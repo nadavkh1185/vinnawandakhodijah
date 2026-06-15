@@ -1,4 +1,3 @@
-import AuroraBackground from "@/components/ui/AuroraBackground";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,9 +13,6 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <main className="relative">
-      {/* Aurora animated background (canvas, fixed) */}
-      <AuroraBackground />
-
       {/* Scroll progress bar */}
       <ScrollProgress />
 

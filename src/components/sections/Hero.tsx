@@ -9,6 +9,7 @@ import {
   IconMapPin,
 } from "@tabler/icons-react";
 import MagneticButton from "@/components/ui/MagneticButton";
+import PcbTraceBackground from "@/components/ui/PcbTraceBackground";
 import { profile, stats } from "@/lib/data";
 
 const easing = [0.21, 0.47, 0.32, 0.98] as [number, number, number, number];
@@ -29,68 +30,7 @@ export default function Hero() {
       id="hero"
       className="relative z-10 flex min-h-screen items-center overflow-hidden bg-[#06131d] px-6 py-24 sm:py-28 lg:py-32"
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div
-          aria-hidden="true"
-          className="absolute -left-1/4 top-[-18%] h-[760px] w-[760px] rounded-full bg-[radial-gradient(circle_at_center,rgba(42,130,183,0.26),rgba(87,151,177,0.11)_38%,transparent_68%)] blur-3xl will-change-transform"
-          animate={{
-            x: [0, 48, 14, 0],
-            y: [0, 32, -18, 0],
-            scale: [1, 1.06, 0.98, 1],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden="true"
-          className="absolute right-[-18%] top-[8%] h-[640px] w-[640px] rounded-full bg-[radial-gradient(circle_at_center,rgba(87,151,177,0.20),rgba(16,49,69,0.20)_42%,transparent_70%)] blur-3xl will-change-transform"
-          animate={{
-            x: [0, -42, -10, 0],
-            y: [0, 36, 10, 0],
-            scale: [1, 0.96, 1.05, 1],
-          }}
-          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden="true"
-          className="absolute bottom-[-30%] left-[22%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle_at_center,rgba(16,49,69,0.72),rgba(42,130,183,0.12)_44%,transparent_72%)] blur-3xl will-change-transform"
-          animate={{
-            x: [0, 28, -26, 0],
-            y: [0, -24, 18, 0],
-            scale: [1, 1.08, 1, 1],
-          }}
-          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <motion.div
-          aria-hidden="true"
-          className="absolute inset-x-[-20%] top-[-46%] h-[70%] rotate-[-7deg] bg-[radial-gradient(ellipse_at_center,rgba(215,236,245,0.16),rgba(87,151,177,0.07)_34%,transparent_68%)] blur-2xl will-change-transform"
-          animate={{ opacity: [0.5, 0.78, 0.56], x: [-20, 28, -20] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          aria-hidden="true"
-          className="absolute left-[-12%] top-[18%] h-[42rem] w-[34rem] rotate-12 bg-[linear-gradient(90deg,transparent,rgba(87,151,177,0.10),transparent)] blur-2xl will-change-transform"
-          animate={{ x: [-18, 30, -18], opacity: [0.28, 0.52, 0.28] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-[0.13]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(159,209,229,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(159,209,229,0.12) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-            maskImage:
-              "radial-gradient(circle at 50% 42%, black 0%, rgba(0,0,0,0.78) 34%, transparent 78%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_48%_38%,rgba(245,251,255,0.10),transparent_28%),linear-gradient(180deg,rgba(6,19,29,0.08),rgba(6,19,29,0.82)_88%)]"
-        />
-        <div className="absolute inset-0 noise opacity-70" />
-      </div>
+      <PcbTraceBackground />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
         <div className="text-center lg:text-left">

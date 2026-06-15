@@ -150,11 +150,6 @@ export default function Contact() {
               <h3 className="mt-5 text-3xl font-semibold tracking-tight text-white">
                 {profile.name}
               </h3>
-              <p className="mt-3 text-lg text-[#D7ECF5]">{profile.title}</p>
-              <p className="mt-6 text-sm leading-7 text-[#BAD3DE]">
-                Messages are sent securely through the portfolio contact API to
-                the configured contact inbox.
-              </p>
 
               <div className="mt-8 space-y-4 border-t border-[#5797B1]/12 pt-6">
                 <div className="flex items-center gap-3 text-sm text-[#BAD3DE]">
@@ -163,7 +158,7 @@ export default function Contact() {
                 </div>
                 <div className="rounded-2xl border border-[#5797B1]/12 bg-white/[0.025] p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
-                    Email Destination
+                    Email
                   </p>
                   <p className="mt-2 break-words text-sm font-medium text-[#D7ECF5]">
                     {profile.email}
@@ -386,7 +381,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center justify-center gap-2 bg-[#5797B1] rounded-2xl px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#6EADC7] hover:shadow-lg hover:shadow-[#2A82B7]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                    className="inline-flex items-center justify-center gap-2 bg-[#5797B1] rounded-2xl px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#6EADC7] hover:shadow-lg hover:shadow-[#2A82B7]/40"
                   >
                     {isSubmitting ? (
                       <>
