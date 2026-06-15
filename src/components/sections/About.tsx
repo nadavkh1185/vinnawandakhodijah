@@ -1,133 +1,112 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useRef, useState } from 'react';
+import { IconCertificate, IconSchool, IconSparkles } from '@tabler/icons-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import GlassCard from '@/components/ui/GlassCard';
-import { stats } from '@/lib/data';
+import { certifications, profile, stats } from '@/lib/data';
 
-function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const { ref, inView } = useInView({ triggerOnce: true });
-  const frameRef = useRef<number>(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const duration = 1500;
-    const start = performance.now();
-
-    const animate = (now: number) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) frameRef.current = requestAnimationFrame(animate);
-    };
-
-    frameRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameRef.current);
-  }, [inView, target]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
-const easing = [0.21, 0.47, 0.32, 0.98] as [number, number, number, number];
-
-const fadeLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: easing } },
-};
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: easing } },
-};
+const principles = [
+  'Scalable systems',
+  'REST API design',
+  'Relational and NoSQL databases',
+  'Security testing',
+  'Modern team workflows',
+];
 
 export default function About() {
   return (
-    <section id="about" className="relative z-10 py-32 px-6">
-      <div className="mx-auto max-w-7xl">
+    <section id="about" className="relative z-10 px-6 py-24 sm:py-28 lg:py-32">
+      <div className="mx-auto max-w-6xl">
         <SectionTitle
-          label="About Me"
-          title="Engineering with purpose."
-          subtitle="I blend deep technical expertise with product thinking to ship things that matter."
+          label="About"
+          title="Practical engineering with product awareness."
+          subtitle="A concise view of how Vinawanda approaches software, from system design to delivery."
         />
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 items-center">
-          {/* Left — text */}
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
           <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
-            <p className="text-lg leading-relaxed text-slate-400">
-              I&apos;m a fullstack engineer with{' '}
-              <span className="text-white font-medium">6+ years</span> of experience building
-              production-grade web applications. I specialize in the intersection of
-              <span className="text-indigo-400 font-medium"> AI and product engineering</span> —
-              creating intelligent systems that feel magical to use.
-            </p>
-            <p className="text-lg leading-relaxed text-slate-400">
-              Previously at{' '}
-              <span className="text-white font-medium">Vercel, Linear, and Stripe</span>. I care
-              deeply about performance, accessibility, and developer experience. I believe the best
-              code is code you don&apos;t have to write.
-            </p>
-            <p className="text-lg leading-relaxed text-slate-400">
-              When I&apos;m not shipping products, I contribute to open source, write about software
-              architecture, and mentor engineers on building AI-native applications.
-            </p>
+            <GlassCard className="p-6 sm:p-7" glow>
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
+                <IconSparkles size={21} />
+              </div>
+              <p className="text-base leading-8 text-[#D7ECF5] sm:text-lg">{profile.summary}</p>
+              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">{profile.extendedSummary}</p>
+              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">{profile.interests}</p>
+            </GlassCard>
 
-            {/* Philosophy tags */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {['Systems thinking', 'AI-first', 'DX obsessed', 'Performance mindset', 'Clean code'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/8 bg-white/4 px-3 py-1.5 text-xs font-medium text-slate-300"
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
-                  {tag}
-                </span>
+                  <GlassCard className="h-full min-h-32 p-5">
+                    <p className="text-3xl font-semibold text-white">{stat.value}</p>
+                    <p className="mt-2 text-sm font-semibold text-[#D7ECF5]">{stat.label}</p>
+                    <p className="mt-1 text-xs leading-5 text-[#7FA5B8]">{stat.desc}</p>
+                  </GlassCard>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right — stats cards */}
           <motion.div
-            variants={fadeRight}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 gap-4"
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
-            {[
-              { label: 'Years Experience', value: 6, suffix: '+', desc: 'Production engineering' },
-              { label: 'Projects Shipped', value: 50, suffix: '+', desc: 'Across 3 continents' },
-              { label: 'Open Source Stars', value: 12, suffix: 'k', desc: 'GitHub contributions' },
-              { label: 'Engineers Mentored', value: 8, suffix: '', desc: 'Senior & mid-level' },
-            ].map((stat, i) => (
-              <GlassCard
-                key={stat.label}
-                className="flex flex-col gap-2 p-6"
-                glow
-                glowColor="rgba(99,102,241,0.12)"
-              >
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 + 0.2, duration: 0.5 }}
-                >
-                  <div className="text-4xl font-extrabold text-white">
-                    <CountUp target={stat.value} suffix={stat.suffix} />
+            <GlassCard className="p-6 sm:p-7">
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#7FA5B8]">
+                Engineering Foundation
+              </p>
+              <div className="grid gap-3">
+                {principles.map((item) => (
+                  <div key={item} className="flex items-center gap-3 rounded-xl border border-[#5797B1]/12 bg-white/[0.025] p-4">
+                    <span className="h-2 w-2 rounded-full bg-[#5797B1] shadow-[0_0_18px_rgba(87,151,177,0.75)]" />
+                    <span className="text-sm font-medium text-[#D7ECF5]">{item}</span>
                   </div>
-                  <div className="mt-1 text-sm font-semibold text-slate-200">{stat.label}</div>
-                  <div className="text-xs text-slate-500">{stat.desc}</div>
-                </motion.div>
+                ))}
+              </div>
+            </GlassCard>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <GlassCard className="h-full p-6" glow glowColor="rgba(87,151,177,0.12)">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
+                  <IconSchool size={19} />
+                </div>
+                <p className="text-sm font-semibold text-white">Bachelor of Computer Science</p>
+                <p className="mt-1 text-sm text-[#BAD3DE]">Universitas Pamulang, 2021 - 2025</p>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">GPA 3.67 / 4.00</p>
               </GlassCard>
-            ))}
+
+              <GlassCard className="h-full p-6" glow glowColor="rgba(87,151,177,0.12)">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
+                  <IconCertificate size={19} />
+                </div>
+                <p className="text-sm font-semibold text-white">Certifications</p>
+                <div className="mt-3 space-y-2">
+                  {certifications.map((cert) => (
+                    <p key={cert.title} className="text-sm leading-6 text-[#BAD3DE]">
+                      {cert.title}
+                      {cert.validUntil ? ` - Valid Until ${cert.validUntil}` : ''}
+                      {cert.result ? ` - ${cert.result}` : ''}
+                    </p>
+                  ))}
+                </div>
+              </GlassCard>
+            </div>
           </motion.div>
         </div>
       </div>

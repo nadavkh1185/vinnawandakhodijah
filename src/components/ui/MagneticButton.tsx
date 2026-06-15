@@ -46,18 +46,18 @@ export default function MagneticButton({
   }, []);
 
   const baseClasses = cn(
-    'inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold',
+    'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold',
     'transition-all duration-200 ease-out cursor-pointer select-none',
     variant === 'primary' && [
-      'bg-indigo-600 text-white',
-      'hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/25',
+      'bg-[#5797B1] text-white',
+      'shadow-lg shadow-[#2A82B7]/18 hover:bg-[#6EADC7] hover:shadow-xl hover:shadow-[#2A82B7]/28',
       'active:scale-95',
     ],
     variant === 'ghost' && [
-      'text-slate-300 hover:text-white hover:bg-white/5',
+      'text-[#BAD3DE] hover:text-white hover:bg-[#5797B1]/10',
     ],
     variant === 'outline' && [
-      'border border-white/10 text-slate-300 hover:border-white/20 hover:text-white hover:bg-white/5',
+      'border border-[#5797B1]/25 text-[#D7ECF5] hover:border-[#5797B1]/45 hover:text-white hover:bg-[#5797B1]/10',
     ],
     className
   );

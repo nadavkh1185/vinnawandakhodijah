@@ -26,10 +26,10 @@ export default function AuroraBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const gradients = [
-        { x: 0.2, y: 0.3, r: 0.55, color1: 'rgba(99,102,241,0.18)', color2: 'transparent' },
-        { x: 0.75, y: 0.2, r: 0.45, color1: 'rgba(168,85,247,0.14)', color2: 'transparent' },
-        { x: 0.5, y: 0.7, r: 0.5, color1: 'rgba(59,130,246,0.12)', color2: 'transparent' },
-        { x: 0.85, y: 0.65, r: 0.4, color1: 'rgba(139,92,246,0.1)', color2: 'transparent' },
+        { x: 0.18, y: 0.28, r: 0.55, color1: 'rgba(42,130,183,0.20)', color2: 'transparent' },
+        { x: 0.78, y: 0.18, r: 0.45, color1: 'rgba(87,151,177,0.16)', color2: 'transparent' },
+        { x: 0.5, y: 0.72, r: 0.52, color1: 'rgba(16,49,69,0.28)', color2: 'transparent' },
+        { x: 0.84, y: 0.68, r: 0.4, color1: 'rgba(245,251,255,0.06)', color2: 'transparent' },
       ];
 
       gradients.forEach((g, i) => {

@@ -25,27 +25,27 @@ export default function SectionTitle({
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={cn(
-        'mb-16',
+        'mb-12 md:mb-14',
         align === 'center' ? 'text-center' : 'text-left',
         className
       )}
     >
       {/* Label pill */}
       <div className={cn('mb-4', align === 'center' ? 'flex justify-center' : '')}>
-        <span className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-indigo-400">
-          <span className="h-1 w-1 rounded-full bg-indigo-400 animate-pulse" />
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#5797B1]/30 bg-[#5797B1]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#9FD1E5]">
+          <span className="h-1 w-1 rounded-full bg-[#5797B1] animate-pulse" />
           {label}
         </span>
       </div>
 
       {/* Title */}
-      <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+      <h2 className="mx-auto max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl">
         {title}
       </h2>
 
       {/* Subtitle */}
       {subtitle && (
-        <p className="mt-4 max-w-2xl text-lg text-slate-400 mx-auto">
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-[#BAD3DE] md:text-lg">
           {subtitle}
         </p>
       )}

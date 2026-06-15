@@ -16,39 +16,41 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alex Chen — Fullstack Engineer",
-    template: "%s | Alex Chen",
+    default: "Vinawanda Khodijah - Fullstack Engineer",
+    template: "%s | Vinawanda Khodijah",
   },
   description:
-    "Senior Fullstack Engineer specializing in AI-native products, scalable web applications, and beautiful developer experiences. Previously at Vercel, Linear, and Stripe.",
+    "Fullstack Engineer in Indonesia, building web and mobile applications with React, Next.js, Node.js, NestJS, PHP, Flutter, and modern databases.",
   keywords: [
+    "Vinawanda Khodijah",
     "fullstack engineer",
     "next.js developer",
     "react developer",
-    "AI engineer",
+    "node.js developer",
+    "nestjs developer",
+    "flutter developer",
     "typescript",
+    "php",
+    "indonesia",
     "web developer",
     "software engineer",
-    "LangChain",
-    "RAG",
+    "mobile developer",
   ],
-  authors: [{ name: "Alex Chen", url: "https://alexchen.dev" }],
-  creator: "Alex Chen",
+  authors: [{ name: "Vinawanda Khodijah" }],
+  creator: "Vinawanda Khodijah",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://alexchen.dev",
-    title: "Alex Chen — Fullstack Engineer",
+    title: "Vinawanda Khodijah - Fullstack Engineer",
     description:
-      "Senior Fullstack Engineer specializing in AI-native products and scalable web applications.",
-    siteName: "Alex Chen Portfolio",
+      "Portfolio of Vinawanda Khodijah, a Fullstack Engineer experienced in web, mobile, APIs, databases, and security testing.",
+    siteName: "Vinawanda Khodijah Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Chen — Fullstack Engineer",
+    title: "Vinawanda Khodijah - Fullstack Engineer",
     description:
-      "Senior Fullstack Engineer specializing in AI-native products and scalable web applications.",
-    creator: "@alexchen_dev",
+      "Fullstack Engineer building scalable web and mobile applications.",
   },
   robots: {
     index: true,
@@ -64,7 +66,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#030712",
+  themeColor: "#18364A",
   width: "device-width",
   initialScale: 1,
 };
@@ -80,7 +82,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full bg-[#030712] text-white overflow-x-hidden">
+      <body className="min-h-full bg-[#06131d] text-white overflow-x-hidden">
         {children}
       </body>
     </html>

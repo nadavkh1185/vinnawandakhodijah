@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 export default function ScrollProgress() {
@@ -9,7 +8,7 @@ export default function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 z-[100] h-[2px] origin-left bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+      className="fixed top-0 left-0 right-0 z-[100] h-[2px] origin-left bg-gradient-to-r from-[#103145] via-[#2A82B7] to-[#103145]"
       style={{ scaleX }}
     />
   );

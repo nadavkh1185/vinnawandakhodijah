@@ -1,190 +1,407 @@
-'use client';
+"use client";
 
-import { useState, FormEvent } from 'react';
-import { motion } from 'framer-motion';
-import { IconBrandGithub, IconBrandLinkedin, IconBrandX, IconMail, IconMapPin, IconSend, IconCheck } from '@tabler/icons-react';
-import SectionTitle from '@/components/ui/SectionTitle';
-import GlassCard from '@/components/ui/GlassCard';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  IconAlertCircle,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconCheck,
+  IconLoader2,
+  IconMapPin,
+  IconSend,
+} from "@tabler/icons-react";
+import SectionTitle from "@/components/ui/SectionTitle";
+import GlassCard from "@/components/ui/GlassCard";
+import { contactSchema, type ContactFormValues } from "@/lib/contact";
+import { profile } from "@/lib/data";
 
 const socials = [
-  { icon: IconBrandGithub, href: 'https://github.com', label: 'GitHub', handle: '@alexchen' },
-  { icon: IconBrandLinkedin, href: 'https://linkedin.com', label: 'LinkedIn', handle: 'linkedin.com/in/alexchen' },
-  { icon: IconBrandX, href: 'https://x.com', label: 'X (Twitter)', handle: '@alexchen_dev' },
-  { icon: IconMail, href: 'mailto:alex@example.com', label: 'Email', handle: 'alex@example.com' },
+  {
+    icon: IconBrandGithub,
+    href: profile.github,
+    label: "GitHub",
+    handle: "github.com/nadavkh1185",
+  },
+  {
+    icon: IconBrandLinkedin,
+    href: profile.linkedin,
+    label: "LinkedIn",
+    handle: "linkedin.com/in/vinawanda-khodijah-3ba741351",
+  },
 ];
 
-type Status = 'idle' | 'loading' | 'success' | 'error';
+type ToastState = {
+  type: "success" | "error";
+  message: string;
+} | null;
+
+const inputClass =
+  "w-full rounded-2xl border border-[#5797B1]/15 bg-[#103145]/35 px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-[#7FA5B8]/60 focus:border-[#5797B1]/45 focus:bg-[#103145]/55 focus:ring-2 focus:ring-[#5797B1]/15";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<Status>('idle');
+  const [toast, setToast] = useState<ToastState>(null);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
-    // Simulate network request
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus('success');
-    setForm({ name: '', email: '', message: '' });
-    setTimeout(() => setStatus('idle'), 4000);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setError,
+    setValue,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+      website: "",
+      startedAt: undefined,
+    },
+  });
+
+  useEffect(() => {
+    setValue("startedAt", Date.now());
+  }, [setValue]);
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setToast(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      const result = (await response.json()) as {
+        message?: string;
+        errors?: Partial<Record<keyof ContactFormValues, string[]>>;
+      };
+
+      if (!response.ok) {
+        if (result.errors) {
+          Object.entries(result.errors).forEach(([field, messages]) => {
+            if (messages?.[0]) {
+              setError(field as keyof ContactFormValues, {
+                type: "server",
+                message: messages[0],
+              });
+            }
+          });
+        }
+
+        setToast({
+          type: "error",
+          message:
+            result.message ||
+            "Unable to send your message right now. Please try again.",
+        });
+        return;
+      }
+
+      reset({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        website: "",
+        startedAt: undefined,
+      });
+      setToast({
+        type: "success",
+        message: "Your message has been sent. Thank you for reaching out.",
+      });
+      window.setTimeout(() => setToast(null), 4500);
+    } catch {
+      setToast({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    }
   };
 
   return (
-    <section id="contact" className="relative z-10 py-32 px-6">
+    <section id="contact" className="relative z-10 px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <SectionTitle
           label="Contact"
-          title="Let's work together."
-          subtitle="Have a project in mind? I'd love to hear about it. Send me a message."
+          title="Let's Build Something Meaningful"
+          subtitle="Whether you have a project, collaboration opportunity, or simply want to connect, feel free to reach out."
         />
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-start">
-          {/* Left — contact info */}
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[0.82fr_1.18fr]">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
           >
-            {/* Availability */}
-            <GlassCard className="p-6" glow glowColor="rgba(16,185,129,0.1)">
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-3 w-3">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+            <GlassCard className="p-8" glow>
+              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#5797B1]/20 bg-[#5797B1]/12 text-[#D7ECF5] shadow-[0_0_30px_rgba(87,151,177,0.12)]">
+                <IconSend size={24} />
+              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#7FA5B8]">
+                Direct Website Message
+              </p>
+              <h3 className="mt-5 text-3xl font-semibold tracking-tight text-white">
+                {profile.name}
+              </h3>
+              <p className="mt-3 text-lg text-[#D7ECF5]">{profile.title}</p>
+              <p className="mt-6 text-sm leading-7 text-[#BAD3DE]">
+                Messages are sent securely through the portfolio contact API to
+                the configured contact inbox.
+              </p>
+
+              <div className="mt-8 space-y-4 border-t border-[#5797B1]/12 pt-6">
+                <div className="flex items-center gap-3 text-sm text-[#BAD3DE]">
+                  <IconMapPin size={17} className="text-[#9FD1E5]" />
+                  {profile.location}
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">Open to opportunities</p>
-                  <p className="text-xs text-slate-500">Available for full-time & consulting roles</p>
+                <div className="rounded-2xl border border-[#5797B1]/12 bg-white/[0.025] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                    Email Destination
+                  </p>
+                  <p className="mt-2 break-words text-sm font-medium text-[#D7ECF5]">
+                    {profile.email}
+                  </p>
                 </div>
               </div>
+
+              <div className="mt-8 grid gap-3">
+                {socials.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: index * 0.08 }}
+                    className="group rounded-2xl border border-[#5797B1]/12 bg-white/[0.025] p-4 transition-all hover:border-[#5797B1]/28 hover:bg-[#5797B1]/10"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#103145]/55 text-[#D7ECF5] transition-transform group-hover:-translate-y-0.5">
+                        <social.icon size={18} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                          {social.label}
+                        </p>
+                        <p className="mt-1 break-words text-sm font-medium text-[#D7ECF5]">
+                          {social.handle}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
             </GlassCard>
-
-            {/* Location */}
-            <div className="flex items-center gap-3 text-slate-400">
-              <IconMapPin size={16} className="shrink-0 text-indigo-400" />
-              <span className="text-sm">San Francisco, CA · Remote-friendly</span>
-            </div>
-
-            {/* Social links */}
-            <div className="space-y-3">
-              {socials.map((s, i) => (
-                <motion.a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith('http') ? '_blank' : undefined}
-                  rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="group flex items-center gap-4 rounded-xl border border-white/6 bg-white/[0.02] p-4 hover:border-white/12 hover:bg-white/[0.05] transition-all"
-                  id={`contact-social-${s.label.toLowerCase().replace(/\s|\(|\)/g, '-')}`}
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/6 text-slate-400 group-hover:text-white group-hover:bg-indigo-500/20 transition-all">
-                    <s.icon size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{s.label}</p>
-                    <p className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">{s.handle}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Right — form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 28 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="relative"
           >
-            <GlassCard className="p-8" glow glowColor="rgba(99,102,241,0.1)">
-              {status === 'success' ? (
+            <AnimatePresence>
+              {toast && (
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="flex flex-col items-center gap-4 py-12 text-center"
+                  initial={{ opacity: 0, y: -14, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -14, scale: 0.98 }}
+                  className={[
+                    "mb-4 flex items-start gap-3 rounded-2xl border p-4 text-sm shadow-lg backdrop-blur-xl",
+                    toast.type === "success"
+                      ? "border-[#5797B1]/25 bg-[#5797B1]/12 text-[#D7ECF5]"
+                      : "border-red-400/25 bg-red-500/10 text-red-100",
+                  ].join(" ")}
+                  role="status"
+                  aria-live="polite"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
-                    <IconCheck size={32} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">Message sent!</h3>
-                  <p className="text-sm text-slate-400">I&apos;ll get back to you within 24 hours.</p>
+                  {toast.type === "success" ? (
+                    <IconCheck size={18} className="mt-0.5 shrink-0" />
+                  ) : (
+                    <IconAlertCircle size={18} className="mt-0.5 shrink-0" />
+                  )}
+                  <span>{toast.message}</span>
                 </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5" id="contact-form">
-                  {/* Name */}
-                  <div className="group relative">
-                    <label htmlFor="contact-name" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      Name
+              )}
+            </AnimatePresence>
+
+            <GlassCard
+              className="p-6 sm:p-8"
+              glow
+              glowColor="rgba(87,151,177,0.14)"
+            >
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-5"
+                noValidate
+              >
+                <input
+                  {...register("website")}
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
+                <input
+                  {...register("startedAt", { valueAsNumber: true })}
+                  type="hidden"
+                />
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="contact-name"
+                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                    >
+                      Full Name
                     </label>
                     <input
                       id="contact-name"
                       type="text"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      autoComplete="name"
                       placeholder="Your full name"
-                      className="w-full rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-indigo-500/50 focus:bg-white/6 focus:ring-1 focus:ring-indigo-500/30"
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={
+                        errors.name ? "contact-name-error" : undefined
+                      }
+                      className={inputClass}
+                      {...register("name")}
                     />
+                    {errors.name && (
+                      <p
+                        id="contact-name-error"
+                        className="mt-2 text-xs text-red-200"
+                      >
+                        {errors.name.message}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Email */}
                   <div>
-                    <label htmlFor="contact-email" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      Email
+                    <label
+                      htmlFor="contact-email"
+                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                    >
+                      Email Address
                     </label>
                     <input
                       id="contact-email"
                       type="email"
-                      required
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      autoComplete="email"
                       placeholder="you@example.com"
-                      className="w-full rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-indigo-500/50 focus:bg-white/6 focus:ring-1 focus:ring-indigo-500/30"
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={
+                        errors.email ? "contact-email-error" : undefined
+                      }
+                      className={inputClass}
+                      {...register("email")}
                     />
+                    {errors.email && (
+                      <p
+                        id="contact-email-error"
+                        className="mt-2 text-xs text-red-200"
+                      >
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
+                </div>
 
-                  {/* Message */}
-                  <div>
-                    <label htmlFor="contact-message" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500">
-                      Message
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      required
-                      rows={5}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      placeholder="Tell me about your project..."
-                      className="w-full resize-none rounded-xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-white placeholder-slate-600 outline-none transition-all focus:border-indigo-500/50 focus:bg-white/6 focus:ring-1 focus:ring-indigo-500/30"
-                    />
-                  </div>
+                <div>
+                  <label
+                    htmlFor="contact-subject"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    id="contact-subject"
+                    type="text"
+                    placeholder="Project, collaboration, or opportunity"
+                    aria-invalid={Boolean(errors.subject)}
+                    aria-describedby={
+                      errors.subject ? "contact-subject-error" : undefined
+                    }
+                    className={inputClass}
+                    {...register("subject")}
+                  />
+                  {errors.subject && (
+                    <p
+                      id="contact-subject-error"
+                      className="mt-2 text-xs text-red-200"
+                    >
+                      {errors.subject.message}
+                    </p>
+                  )}
+                </div>
 
-                  {/* Submit */}
+                <div>
+                  <label
+                    htmlFor="contact-message"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    rows={6}
+                    placeholder="Tell me about what you would like to build..."
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={
+                      errors.message ? "contact-message-error" : undefined
+                    }
+                    className={`${inputClass} resize-none leading-7`}
+                    {...register("message")}
+                  />
+                  {errors.message && (
+                    <p
+                      id="contact-message-error"
+                      className="mt-2 text-xs text-red-200"
+                    >
+                      {errors.message.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                  <p
+                    className="text-xs leading-5 text-[#7FA5B8]"
+                    aria-live="polite"
+                  >
+                    {isSubmitSuccessful
+                      ? "Form cleared after successful submission."
+                      : "Protected with validation and anti-spam checks."}
+                  </p>
                   <button
                     type="submit"
-                    id="contact-submit"
-                    disabled={status === 'loading'}
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-indigo-500 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-2 focus:ring-offset-[#030712]"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center justify-center gap-2 bg-[#5797B1] rounded-2xl px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#6EADC7] hover:shadow-lg hover:shadow-[#2A82B7]/20 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {status === 'loading' ? (
-                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                      </svg>
+                    {isSubmitting ? (
+                      <>
+                        <IconLoader2 size={17} className="animate-spin" />
+                        Sending...
+                      </>
                     ) : (
                       <>
                         Send Message
-                        <IconSend size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        <IconSend size={17} />
                       </>
                     )}
                   </button>
-                </form>
-              )}
+                </div>
+              </form>
             </GlassCard>
           </motion.div>
         </div>
