@@ -146,8 +146,7 @@ export default function TechStack() {
       <div className="mx-auto max-w-6xl">
         <SectionTitle
           label="Tech Stack"
-          title="A compact toolkit for modern product engineering."
-          subtitle="Official technology icons, grouped filters, and a denser layout for faster scanning across web, mobile, backend, data, and workflow tools."
+          title="A compact toolkit for modern product engineering"
         />
 
         <div className="mb-8 flex flex-wrap justify-center gap-2">

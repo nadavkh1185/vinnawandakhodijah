@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { IconCertificate, IconSchool, IconSparkles } from '@tabler/icons-react';
-import SectionTitle from '@/components/ui/SectionTitle';
-import GlassCard from '@/components/ui/GlassCard';
-import { certifications, profile, stats } from '@/lib/data';
+import { motion } from "framer-motion";
+import { IconCertificate, IconSchool, IconSparkles } from "@tabler/icons-react";
+import SectionTitle from "@/components/ui/SectionTitle";
+import GlassCard from "@/components/ui/GlassCard";
+import { certifications, profile, stats } from "@/lib/data";
 
 const principles = [
-  'Scalable systems',
-  'REST API design',
-  'Relational and NoSQL databases',
-  'Security testing',
-  'Modern team workflows',
+  "Scalable systems",
+  "REST API design",
+  "Relational and NoSQL databases",
+  "Security testing",
+  "Modern team workflows",
 ];
 
 export default function About() {
@@ -20,8 +20,7 @@ export default function About() {
       <div className="mx-auto max-w-6xl">
         <SectionTitle
           label="About"
-          title="Practical engineering with product awareness."
-          subtitle="A concise view of how Vinawanda approaches software, from system design to delivery."
+          title="Practical engineering with product awareness"
         />
 
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
@@ -36,9 +35,15 @@ export default function About() {
               <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
                 <IconSparkles size={21} />
               </div>
-              <p className="text-base leading-8 text-[#D7ECF5] sm:text-lg">{profile.summary}</p>
-              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">{profile.extendedSummary}</p>
-              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">{profile.interests}</p>
+              <p className="text-base leading-8 text-[#D7ECF5] sm:text-lg">
+                {profile.summary}
+              </p>
+              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">
+                {profile.extendedSummary}
+              </p>
+              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">
+                {profile.interests}
+              </p>
             </GlassCard>
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -51,9 +56,15 @@ export default function About() {
                   transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
                   <GlassCard className="h-full min-h-32 p-5">
-                    <p className="text-3xl font-semibold text-white">{stat.value}</p>
-                    <p className="mt-2 text-sm font-semibold text-[#D7ECF5]">{stat.label}</p>
-                    <p className="mt-1 text-xs leading-5 text-[#7FA5B8]">{stat.desc}</p>
+                    <p className="text-3xl font-semibold text-white">
+                      {stat.value}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-[#D7ECF5]">
+                      {stat.label}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 text-[#7FA5B8]">
+                      {stat.desc}
+                    </p>
                   </GlassCard>
                 </motion.div>
               ))}
@@ -73,35 +84,61 @@ export default function About() {
               </p>
               <div className="grid gap-3">
                 {principles.map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-xl border border-[#5797B1]/12 bg-white/[0.025] p-4">
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-xl border border-[#5797B1]/12 bg-white/[0.025] p-4"
+                  >
                     <span className="h-2 w-2 rounded-full bg-[#5797B1] shadow-[0_0_18px_rgba(87,151,177,0.75)]" />
-                    <span className="text-sm font-medium text-[#D7ECF5]">{item}</span>
+                    <span className="text-sm font-medium text-[#D7ECF5]">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
             </GlassCard>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <GlassCard className="h-full p-6" glow glowColor="rgba(87,151,177,0.12)">
+              <GlassCard
+                className="h-full p-6"
+                glow
+                glowColor="rgba(87,151,177,0.12)"
+              >
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
                   <IconSchool size={19} />
                 </div>
-                <p className="text-sm font-semibold text-white">Bachelor of Computer Science</p>
-                <p className="mt-1 text-sm text-[#BAD3DE]">Universitas Pamulang, 2021 - 2025</p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">GPA 3.67 / 4.00</p>
+                <p className="text-sm font-semibold text-white">
+                  Bachelor of Computer Science
+                </p>
+                <p className="mt-1 text-sm text-[#BAD3DE]">
+                  Universitas Pamulang, 2021 - 2025
+                </p>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                  GPA 3.67 / 4.00
+                </p>
               </GlassCard>
 
-              <GlassCard className="h-full p-6" glow glowColor="rgba(87,151,177,0.12)">
+              <GlassCard
+                className="h-full p-6"
+                glow
+                glowColor="rgba(87,151,177,0.12)"
+              >
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
                   <IconCertificate size={19} />
                 </div>
-                <p className="text-sm font-semibold text-white">Certifications</p>
+                <p className="text-sm font-semibold text-white">
+                  Certifications
+                </p>
                 <div className="mt-3 space-y-2">
                   {certifications.map((cert) => (
-                    <p key={cert.title} className="text-sm leading-6 text-[#BAD3DE]">
+                    <p
+                      key={cert.title}
+                      className="text-sm leading-6 text-[#BAD3DE]"
+                    >
                       {cert.title}
-                      {cert.validUntil ? ` - Valid Until ${cert.validUntil}` : ''}
-                      {cert.result ? ` - ${cert.result}` : ''}
+                      {cert.validUntil
+                        ? ` - Valid Until ${cert.validUntil}`
+                        : ""}
+                      {cert.result ? ` - ${cert.result}` : ""}
                     </p>
                   ))}
                 </div>

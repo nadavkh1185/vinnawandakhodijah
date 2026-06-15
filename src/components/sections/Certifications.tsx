@@ -31,12 +31,14 @@ export default function Certifications() {
   const [preview, setPreview] = useState<Certificate | null>(null);
 
   return (
-    <section id="certifications" className="relative z-10 px-6 py-24 sm:py-28 lg:py-32">
+    <section
+      id="certifications"
+      className="relative z-10 px-6 py-24 sm:py-28 lg:py-32"
+    >
       <div className="mx-auto max-w-6xl">
         <SectionTitle
           label="Certifications"
           title="Verified learning and professional standards."
-          subtitle="A dedicated showcase for credentials, competency validation, and internship achievements."
         />
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">

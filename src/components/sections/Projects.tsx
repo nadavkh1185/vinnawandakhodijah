@@ -111,8 +111,7 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl">
         <SectionTitle
           label="Projects"
-          title="Selected work across product surfaces."
-          subtitle="Enterprise dashboards, CMS platforms, mobile apps, LMS modules, and e-commerce operations."
+          title="Selected work across product surfaces"
         />
 
         <div className="space-y-6">
