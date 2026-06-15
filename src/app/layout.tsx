@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     default: "Vinawanda Khodijah - Fullstack Engineer",
     template: "%s | Vinawanda Khodijah",
   },
+  icons: {
+    icon: "/lily.png",
+    shortcut: "/lily.png",
+    apple: "/lily.png",
+  },
   description:
     "Fullstack Engineer in Indonesia, building web and mobile applications with React, Next.js, Node.js, NestJS, PHP, Flutter, and modern databases.",
   keywords: [
