@@ -14,6 +14,22 @@ export default function Navbar() {
   const [avatarError, setAvatarError] = useState(false);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
@@ -153,34 +169,60 @@ export default function Navbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[73px] z-40 border-b border-[#5797B1]/15 bg-[#06131d]/95 backdrop-blur-xl lg:hidden"
-          >
-            <ul className="flex flex-col gap-1 px-6 py-4" role="list">
-              {navLinks.map((link) => (
-                <li key={link.href}>
+          <>
+            <motion.button
+              type="button"
+              className="fixed inset-0 z-30 bg-[#06131d]/55 backdrop-blur-sm lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              aria-label="Close navigation menu"
+              onClick={() => setMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -18, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="fixed inset-x-4 top-[78px] z-40 overflow-hidden rounded-2xl border border-[#5797B1]/18 bg-[#06131d]/94 shadow-2xl shadow-black/30 backdrop-blur-xl lg:hidden"
+            >
+              <ul className="flex flex-col gap-1 p-3" role="list">
+                {navLinks.map((link) => {
+                  const id = link.href.slice(1);
+                  const isActive = activeSection === id;
+
+                  return (
+                    <li key={link.href}>
+                      <button
+                        onClick={() => handleNavClick(link.href)}
+                        className={cn(
+                          "flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-medium transition-colors",
+                          isActive
+                            ? "bg-[#5797B1]/12 text-white"
+                            : "text-[#BAD3DE] hover:bg-white/5 hover:text-white",
+                        )}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        {link.label}
+                        {isActive && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#5797B1] shadow-[0_0_16px_rgba(87,151,177,0.9)]" />
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+                <li className="pt-2">
                   <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="w-full rounded-lg px-4 py-3 text-left text-sm font-medium text-[#BAD3DE] transition-colors hover:bg-white/5 hover:text-white"
+                    type="button"
+                    onClick={() => handleNavClick("#contact")}
+                    className="block w-full rounded-xl bg-[#5797B1] px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#6EADC7]"
                   >
-                    {link.label}
+                    Contact
                   </button>
                 </li>
-              ))}
-              <li className="pt-2">
-                <a
-                  href="#contact"
-                  className="block rounded-xl bg-[#5797B1] px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#6EADC7]"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </motion.div>
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

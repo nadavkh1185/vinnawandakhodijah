@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type Point = readonly [number, number];
 
@@ -193,6 +193,15 @@ const dormantPaths = [
   "M103 362 H238 V314",
 ];
 
+const particles = [
+  { cx: 160, cy: 132, r: 1.4, delay: 0.4, duration: 9 },
+  { cx: 292, cy: 474, r: 1.1, delay: 1.7, duration: 11 },
+  { cx: 516, cy: 210, r: 1.3, delay: 2.8, duration: 10 },
+  { cx: 702, cy: 116, r: 1, delay: 4.2, duration: 12 },
+  { cx: 872, cy: 404, r: 1.5, delay: 0.9, duration: 10.5 },
+  { cx: 1048, cy: 258, r: 1.2, delay: 3.6, duration: 9.5 },
+];
+
 function toPath(points: readonly Point[]) {
   return points
     .map(([x, y], index) => `${index === 0 ? "M" : "L"}${x} ${y}`)
@@ -224,6 +233,8 @@ function endpoint(points: readonly Point[]) {
 }
 
 export default function PcbTraceBackground() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -338,10 +349,10 @@ export default function PcbTraceBackground() {
                   strokeWidth={trace.width ?? 1.1}
                   strokeDasharray="1"
                   filter="url(#traceGlow)"
-                  initial={{ strokeDashoffset: 1, opacity: 0 }}
+                  initial={{ strokeDashoffset: reduceMotion ? 0 : 1, opacity: reduceMotion ? 0.24 : 0 }}
                   animate={{
-                    strokeDashoffset: [1, 0, 0, 0],
-                    opacity: [0, 1, 0.88, 0.26],
+                    strokeDashoffset: reduceMotion ? 0 : [1, 0, 0, 0],
+                    opacity: reduceMotion ? 0.24 : [0, 1, 0.88, 0.26],
                   }}
                   transition={{
                     duration: period,
@@ -366,10 +377,10 @@ export default function PcbTraceBackground() {
                   strokeWidth={(trace.width ?? 1.1) + 2.8}
                   strokeDasharray="0.025 1"
                   filter="url(#traceGlow)"
-                  initial={{ strokeDashoffset: 1, opacity: 0 }}
+                  initial={{ strokeDashoffset: reduceMotion ? 0 : 1, opacity: 0 }}
                   animate={{
-                    strokeDashoffset: [1, 0, 0, 0],
-                    opacity: [0, 0.95, 0, 0],
+                    strokeDashoffset: reduceMotion ? 0 : [1, 0, 0, 0],
+                    opacity: reduceMotion ? 0 : [0, 0.95, 0, 0],
                   }}
                   transition={{
                     duration: period,
@@ -384,7 +395,8 @@ export default function PcbTraceBackground() {
                     ease: "linear",
                   }}
                 />
-                <motion.circle
+                {!reduceMotion && (
+                  <motion.circle
                   r="7"
                   fill="url(#pulseCore)"
                   filter="url(#nodeGlow)"
@@ -411,17 +423,18 @@ export default function PcbTraceBackground() {
                     ],
                     ease: "linear",
                   }}
-                />
+                  />
+                )}
                 <motion.circle
                   cx={endX}
                   cy={endY}
                   r="4"
                   fill="#D7ECF5"
                   filter="url(#nodeGlow)"
-                  initial={{ opacity: 0, scale: 0.4 }}
+                  initial={{ opacity: reduceMotion ? 0.3 : 0, scale: reduceMotion ? 0.9 : 0.4 }}
                   animate={{
-                    opacity: [0, 0, 1, 0.82, 0],
-                    scale: [0.4, 0.4, 1.28, 1, 0.72],
+                    opacity: reduceMotion ? 0.3 : [0, 0, 1, 0.82, 0],
+                    scale: reduceMotion ? 0.9 : [0.4, 0.4, 1.28, 1, 0.72],
                   }}
                   transition={{
                     duration: period,
@@ -437,7 +450,8 @@ export default function PcbTraceBackground() {
                     ease: "easeOut",
                   }}
                 />
-                <motion.circle
+                {!reduceMotion && (
+                  <motion.circle
                   cx={endX}
                   cy={endY}
                   r="13"
@@ -463,10 +477,35 @@ export default function PcbTraceBackground() {
                     ],
                     ease: "easeOut",
                   }}
-                />
+                  />
+                )}
               </g>
             );
           })}
+        </g>
+
+        <g opacity="0.72">
+          {particles.map((particle) => (
+            <motion.circle
+              key={`${particle.cx}-${particle.cy}`}
+              cx={particle.cx}
+              cy={particle.cy}
+              r={particle.r}
+              fill="#D7ECF5"
+              filter="url(#nodeGlow)"
+              initial={{ opacity: reduceMotion ? 0.18 : 0 }}
+              animate={{
+                opacity: reduceMotion ? 0.18 : [0.08, 0.62, 0.18, 0.48, 0.08],
+                y: reduceMotion ? 0 : [0, -14, -5, -18, 0],
+              }}
+              transition={{
+                duration: particle.duration,
+                delay: particle.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
         </g>
       </svg>
 

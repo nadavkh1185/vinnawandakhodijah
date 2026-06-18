@@ -7,11 +7,11 @@ import GlassCard from "@/components/ui/GlassCard";
 import { certifications, profile, stats } from "@/lib/data";
 
 const principles = [
-  "Scalable systems",
-  "REST API design",
-  "Relational and NoSQL databases",
-  "Security testing",
-  "Modern team workflows",
+  "Fullstack Engineer",
+  "React / Next.js",
+  "NestJS API systems",
+  "Mobile development",
+  "Enterprise systems",
 ];
 
 export default function About() {

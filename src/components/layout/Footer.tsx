@@ -14,6 +14,8 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="relative z-10 border-t border-[#5797B1]/15 bg-[#06131d]/70 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-6 py-10">
@@ -48,6 +50,10 @@ export default function Footer() {
               </a>
             ))}
           </div>
+        </div>
+        <div className="mt-8 border-t border-[#5797B1]/10 pt-5 text-center text-xs leading-6 text-[#7FA5B8] sm:text-left">
+          &copy; {year} {profile.name}. Built as a modern fullstack engineering
+          portfolio.
         </div>
       </div>
     </footer>

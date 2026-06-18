@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   IconBuilding,
   IconCalendar,
@@ -11,34 +11,53 @@ import GlassCard from "@/components/ui/GlassCard";
 import { projects } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function ProjectVisual({
   accentColor,
   title,
   year,
-  image,
+  images,
+  isMobileProject,
 }: {
   accentColor: string;
   title: string;
   year: string;
-  image?: string[];
+  images?: string[];
+  isMobileProject: boolean;
 }) {
+  const reduceMotion = useReducedMotion();
   const [currentImage, setCurrentImage] = useState(0);
+  const slides = useMemo(
+    () => (images?.length ? images : ["/dash-migrasi.png"]),
+    [images],
+  );
 
   useEffect(() => {
-    if (!image?.length) return;
+    if (reduceMotion || slides.length <= 1) return;
 
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % image.length);
+      setCurrentImage((prev) => (prev + 1) % slides.length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [image]);
+  }, [reduceMotion, slides.length]);
+
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number } },
+  ) => {
+    if (Math.abs(info.offset.x) < 48 || slides.length <= 1) return;
+    setCurrentImage((prev) =>
+      info.offset.x < 0
+        ? (prev + 1) % slides.length
+        : (prev - 1 + slides.length) % slides.length,
+    );
+  };
 
   return (
     <div
-      className="relative flex h-full min-h-72 overflow-hidden bg-[#103145]/75 p-6 sm:p-7"
+      className="relative flex h-full min-h-[320px] overflow-hidden bg-[#103145]/75 p-4 sm:min-h-[360px] sm:p-6 lg:p-7"
       style={{
         background: `radial-gradient(circle at 18% 18%, ${accentColor}55, transparent 34%), linear-gradient(135deg, #103145, #18364A 56%, #06131d)`,
       }}
@@ -54,33 +73,84 @@ function ProjectVisual({
           </span>
         </div>
 
-        <div className="mt-14 space-y-3">
+        <div className="mt-8 space-y-3 sm:mt-10">
           <div className="h-2 w-24 rounded-full bg-white/25" />
           <div className="h-2 w-40 rounded-full bg-white/15" />
-          <div className="mt-10">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/20">
-              <Image
-                src={image?.[currentImage] ?? "/dash-migrasi.png"}
-                alt={title}
-                width={1200}
-                height={700}
-                className="h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+          <div className="mt-7 sm:mt-8">
+            <div
+              className={cn(
+                "relative mx-auto overflow-hidden border border-white/10 bg-black/25 shadow-2xl shadow-black/20",
+                isMobileProject
+                  ? "max-w-[230px] rounded-[2rem] p-2"
+                  : "rounded-2xl sm:rounded-3xl",
+              )}
+            >
+              {isMobileProject && (
+                <Image
+                  src={slides[currentImage]}
+                  alt=""
+                  fill
+                  sizes="260px"
+                  className="scale-125 object-cover opacity-28 blur-2xl"
+                  aria-hidden="true"
+                />
+              )}
 
-              {/* overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#103145]/60 via-transparent to-transparent" />
+              <motion.div
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.16}
+                onDragEnd={handleDragEnd}
+                className={cn(
+                  "relative overflow-hidden",
+                  isMobileProject
+                    ? "aspect-[9/19] rounded-[1.5rem] bg-[#06131d]"
+                    : "aspect-[16/9]",
+                )}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={slides[currentImage]}
+                    initial={reduceMotion ? false : { opacity: 0, x: 32 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={reduceMotion ? undefined : { opacity: 0, x: -32 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={slides[currentImage]}
+                      alt={`${title} screenshot ${currentImage + 1}`}
+                      fill
+                      sizes={
+                        isMobileProject
+                          ? "(max-width: 768px) 220px, 260px"
+                          : "(max-width: 768px) 100vw, 560px"
+                      }
+                      className={cn(
+                        "transition-transform duration-700 group-hover:scale-[1.025]",
+                        isMobileProject ? "object-contain" : "object-cover",
+                      )}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
 
-              {/* dots indicator */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#103145]/55 via-transparent to-transparent" />
+
               <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-                {image?.map((_, index) => (
-                  <div
+                {slides.map((_, index) => (
+                  <button
+                    type="button"
                     key={index}
+                    onClick={() => setCurrentImage(index)}
                     className={cn(
                       "h-2 rounded-full transition-all duration-300",
                       currentImage === index
                         ? "w-6 bg-white"
-                        : "w-2 bg-white/40",
+                        : "w-2 bg-white/45 hover:bg-white/70",
                     )}
+                    aria-label={`Show ${title} screenshot ${index + 1}`}
+                    aria-current={currentImage === index}
                   />
                 ))}
               </div>
@@ -88,9 +158,9 @@ function ProjectVisual({
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-8 sm:mt-10">
           <p className="text-sm font-medium text-[#D7ECF5]">Selected project</p>
-          <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-4xl">
             {title}
           </h3>
         </div>
@@ -117,6 +187,15 @@ export default function Projects() {
         <div className="space-y-6">
           {featured.map((project, index) => {
             const isReverse = index % 2 === 1;
+            const projectImages =
+              "images" in project && Array.isArray(project.images)
+                ? project.images
+                : "image" in project && Array.isArray(project.image)
+                  ? project.image
+                  : undefined;
+            const isMobileProject = project.tags.some((tag) =>
+              ["Flutter", "React Native"].includes(tag),
+            );
 
             return (
               <motion.article
@@ -143,7 +222,8 @@ export default function Projects() {
                         accentColor={project.accentColor}
                         title={project.title}
                         year={project.year}
-                        image={project.image}
+                        images={projectImages}
+                        isMobileProject={isMobileProject}
                       />
                     </div>
 

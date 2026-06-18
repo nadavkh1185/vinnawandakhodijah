@@ -24,6 +24,9 @@ export default function GlassCard({
     if (!hover) return;
     const card = cardRef.current;
     if (!card) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    if (reduceMotion || coarsePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = card.getBoundingClientRect();
