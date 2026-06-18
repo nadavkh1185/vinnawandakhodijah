@@ -201,9 +201,6 @@ export default function TechStack() {
                     <h3 className="truncate text-sm font-semibold leading-5 text-white">
                       {tech.name}
                     </h3>
-                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[#7FA5B8]">
-                      {tech.category}
-                    </p>
                   </div>
                 </div>
               </GlassCard>
