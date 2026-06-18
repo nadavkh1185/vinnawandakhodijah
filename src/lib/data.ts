@@ -93,7 +93,7 @@ export const projects = [
     title: "Suarasa Mobile App",
     client: "Personal Project / GDG Event",
     year: "2026",
-    image: ["/suarasa-1.jpg", "/suarasa-2.jpg", "/suarasa-3.jpg"],
+    image: ["/suarasa-1.png", "/suarasa-2.png", "/suarasa-3.png"],
     description:
       "Developed an AI-powered mobile application integrating voice interaction, cloud services, and Google AI technologies during a rapid development event.",
     tags: ["Flutter", "Dart", "Google Cloud", "Gemini AI"],
