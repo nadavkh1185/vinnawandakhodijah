@@ -51,10 +51,6 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-8 border-t border-[#5797B1]/10 pt-5 text-center text-xs leading-6 text-[#7FA5B8] sm:text-left">
-          &copy; {year} {profile.name}. Built as a modern fullstack engineering
-          portfolio.
-        </div>
       </div>
     </footer>
   );
