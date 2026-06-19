@@ -376,7 +376,7 @@ export default function Contact() {
                   >
                     {isSubmitSuccessful
                       ? "Form cleared after successful submission."
-                      : "Protected with validation and anti-spam checks."}
+                      : ""}
                   </p>
                   <button
                     type="submit"
