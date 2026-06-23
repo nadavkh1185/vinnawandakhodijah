@@ -28,12 +28,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative z-10 flex min-h-screen items-center overflow-hidden bg-[#06131d] px-6 py-24 sm:py-28 lg:py-32"
+      className="relative z-10 flex min-h-screen items-center overflow-hidden bg-[#06131d] px-6 py-16 sm:py-20 lg:py-24"
     >
       <PcbTraceBackground />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
-        <div className="text-center lg:text-left">
+      <div className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl flex-col items-center justify-center text-center">
+        <div className="flex flex-col items-center text-center">
           <motion.div
             custom={0}
             variants={fadeUp}
@@ -70,9 +70,9 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#BAD3DE] sm:text-lg lg:mx-0"
+            className="mx-auto mt-6 max-w-5xl text-center text-base leading-8 text-[#BAD3DE] sm:text-lg"
           >
-            {profile.summary} {profile.extendedSummary}
+            {profile.mainsummary}
           </motion.p>
 
           <motion.div
@@ -80,7 +80,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            className="mt-8 flex flex-wrap items-center justify-center gap-3 text-center"
           >
             <MagneticButton
               href="#projects"
@@ -123,56 +123,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           className="relative mx-auto w-full max-w-md lg:max-w-none"
-        >
-          <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-[#2A82B7]/24 via-transparent to-[#103145]/30 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[1.5rem] border border-[#5797B1]/20 bg-[#103145]/45 p-5 shadow-2xl shadow-black/20 backdrop-blur-xl sm:p-6">
-            <div className="mb-6 flex items-center justify-between border-b border-[#5797B1]/15 pb-5">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-[#7FA5B8]">
-                  Portfolio
-                </p>
-                <p className="mt-1 text-lg font-semibold text-white">
-                  {profile.title}
-                </p>
-              </div>
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#5797B1]/20 bg-white/5 text-lg font-semibold text-white">
-                {profile.initials}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="rounded-[1.1rem] border border-[#5797B1]/15 bg-white/[0.035] p-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
-                  Current Focus
-                </p>
-                <p className="mt-3 text-sm leading-7 text-[#D7ECF5]">
-                  {profile.interests}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="min-h-24 rounded-[1.1rem] border border-[#5797B1]/15 bg-white/[0.035] p-4"
-                  >
-                    <p className="text-2xl font-semibold text-white">
-                      {stat.value}
-                    </p>
-                    <p className="mt-1 text-xs font-medium text-[#BAD3DE]">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-3 rounded-[1.1rem] border border-[#5797B1]/15 bg-white/[0.035] p-4 text-sm text-[#BAD3DE]">
-                <IconMapPin size={17} className="text-[#9FD1E5]" />
-                Based in {profile.location}
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        ></motion.div>
       </div>
 
       <motion.button

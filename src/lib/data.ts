@@ -1,12 +1,13 @@
 export const profile = {
   name: "Vinawanda Khodijah",
   displayName: "VINAWANDA KHODIJAH",
-  initials: "VK",
   title: "Fullstack Engineer",
   location: "Indonesia",
   email: "vinawandakhodijah@gmail.com",
   github: "https://github.com/nadavkh1185",
   linkedin: "https://www.linkedin.com/in/vinawanda-khodijah-3ba741351",
+  mainsummary:
+    "Building scalable web and mobile applications, APIs, and database-driven systems with modern technologies and engineering best practices",
   summary:
     "Fullstack Engineer experienced in building web and mobile applications using React, Next.js, Node.js, NestJS, PHP, Flutter, and modern database technologies.",
   extendedSummary:
