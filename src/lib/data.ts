@@ -2,6 +2,7 @@ export const profile = {
   name: "Vinawanda Khodijah",
   displayName: "VINAWANDA KHODIJAH",
   title: "Fullstack Engineer",
+  initials: "VK",
   location: "Indonesia",
   email: "vinawandakhodijah@gmail.com",
   github: "https://github.com/nadavkh1185",
