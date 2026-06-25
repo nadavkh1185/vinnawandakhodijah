@@ -381,7 +381,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#22F2FF]/45 bg-[#22F2FF] px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-[#07142B] transition-all hover:bg-[#FFF4D7] hover:shadow-[0_0_24px_rgba(34,242,255,0.3)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#22F2FF]/45 bg-[#22F2FF] px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-[#8FB5C6] transition-all hover:bg-[#FFF4D7] hover:shadow-[0_0_24px_rgba(34,242,255,0.3)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                   >
                     {isSubmitting ? (
                       <>

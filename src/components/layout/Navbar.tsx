@@ -215,7 +215,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     onClick={() => handleNavClick("#contact")}
-                    className="block w-full rounded-md bg-[#22F2FF] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-[#07142B] transition-colors hover:bg-[#FFF4D7]"
+                    className="block w-full rounded-md bg-[#22c0ff] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.08em] text-[#BFF7FF] transition-colors hover:bg-[#FFF4D7]"
                   >
                     Contact
                   </button>
