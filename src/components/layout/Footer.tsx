@@ -14,21 +14,19 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="relative z-10 border-t border-[#5797B1]/15 bg-[#06131d]/70 backdrop-blur-sm">
+    <footer className="relative z-10 border-t border-[#22F2FF]/16 bg-[#030711]/78 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
           <a
             href="#"
-            className="flex items-center gap-3 text-sm font-semibold text-white"
+            className="flex items-center gap-3 text-sm font-semibold text-[#FFF4D7]"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#5797B1]/20 bg-[#5797B1]/10 text-xs">
+            <span className="flex h-9 w-9 items-center justify-center rounded-md border border-[#22F2FF]/24 bg-[#07142B] text-xs text-[#22F2FF]">
               {profile.initials}
             </span>
             {profile.name}
@@ -44,7 +42,7 @@ export default function Footer() {
                   href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
                 aria-label={label}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#5797B1]/15 text-[#BAD3DE] transition-all hover:border-[#5797B1]/35 hover:bg-[#5797B1]/10 hover:text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-[#22F2FF]/18 text-[#BFF7FF] transition-all hover:border-[#FF3F87]/38 hover:bg-[#FF3F87]/10 hover:text-[#FFF4D7]"
               >
                 <Icon size={16} />
               </a>

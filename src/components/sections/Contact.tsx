@@ -39,7 +39,7 @@ type ToastState = {
 } | null;
 
 const inputClass =
-  "w-full rounded-2xl border border-[#5797B1]/15 bg-[#103145]/35 px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-[#7FA5B8]/60 focus:border-[#5797B1]/45 focus:bg-[#103145]/55 focus:ring-2 focus:ring-[#5797B1]/15";
+  "w-full rounded-md border border-[#22F2FF]/18 bg-[#07142B]/70 px-4 py-3 text-sm text-[#FFF4D7] outline-none transition-all placeholder:text-[#8FB5C6]/65 focus:border-[#22F2FF]/55 focus:bg-[#07142B]/90 focus:ring-2 focus:ring-[#22F2FF]/15";
 
 export default function Contact() {
   const [toast, setToast] = useState<ToastState>(null);
@@ -141,26 +141,26 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <GlassCard className="p-8" glow>
-              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#5797B1]/20 bg-[#5797B1]/12 text-[#D7ECF5] shadow-[0_0_30px_rgba(87,151,177,0.12)]">
+              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-md border border-[#22F2FF]/24 bg-[#07142B]/70 text-[#22F2FF] shadow-[0_0_30px_rgba(34,242,255,0.12)]">
                 <IconSend size={24} />
               </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#7FA5B8]">
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#BFF7FF]">
                 Direct Website Message
               </p>
-              <h3 className="mt-5 text-3xl font-semibold tracking-tight text-white">
+              <h3 className="mt-5 text-3xl font-semibold text-[#FFF4D7]">
                 {profile.name}
               </h3>
 
-              <div className="mt-8 space-y-4 border-t border-[#5797B1]/12 pt-6">
-                <div className="flex items-center gap-3 text-sm text-[#BAD3DE]">
-                  <IconMapPin size={17} className="text-[#9FD1E5]" />
+              <div className="mt-8 space-y-4 border-t border-[#22F2FF]/14 pt-6">
+                <div className="flex items-center gap-3 text-sm text-[#D8CDA9]">
+                  <IconMapPin size={17} className="text-[#22F2FF]" />
                   {profile.location}
                 </div>
-                <div className="rounded-2xl border border-[#5797B1]/12 bg-white/[0.025] p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                <div className="rounded-md border border-[#22F2FF]/14 bg-[#07142B]/60 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BFF7FF]">
                     Email
                   </p>
-                  <p className="mt-2 break-words text-sm font-medium text-[#D7ECF5]">
+                  <p className="mt-2 break-words text-sm font-medium text-[#FFF4D7]">
                     {profile.email}
                   </p>
                 </div>
@@ -177,17 +177,17 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: index * 0.08 }}
-                    className="group rounded-2xl border border-[#5797B1]/12 bg-white/[0.025] p-4 transition-all hover:border-[#5797B1]/28 hover:bg-[#5797B1]/10"
+                    className="group rounded-md border border-[#22F2FF]/14 bg-[#07142B]/60 p-4 transition-all hover:border-[#FF3F87]/35 hover:bg-[#FF3F87]/10"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#103145]/55 text-[#D7ECF5] transition-transform group-hover:-translate-y-0.5">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-[#07142B]/80 text-[#22F2FF] transition-transform group-hover:-translate-y-0.5">
                         <social.icon size={18} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BFF7FF]">
                           {social.label}
                         </p>
-                        <p className="mt-1 break-words text-sm font-medium text-[#D7ECF5]">
+                        <p className="mt-1 break-words text-sm font-medium text-[#FFF4D7]">
                           {social.handle}
                         </p>
                       </div>
@@ -214,7 +214,7 @@ export default function Contact() {
                   className={[
                     "mb-4 flex items-start gap-3 rounded-2xl border p-4 text-sm shadow-lg backdrop-blur-xl",
                     toast.type === "success"
-                      ? "border-[#5797B1]/25 bg-[#5797B1]/12 text-[#D7ECF5]"
+                      ? "border-[#22F2FF]/25 bg-[#22F2FF]/12 text-[#FFF4D7]"
                       : "border-red-400/25 bg-red-500/10 text-red-100",
                   ].join(" ")}
                   role="status"
@@ -257,7 +257,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#BFF7FF]"
                     >
                       Full Name
                     </label>
@@ -286,7 +286,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-email"
-                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                      className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#BFF7FF]"
                     >
                       Email Address
                     </label>
@@ -316,7 +316,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="contact-subject"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#BFF7FF]"
                   >
                     Subject
                   </label>
@@ -344,7 +344,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="contact-message"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#9FD1E5]"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-[0.18em] text-[#BFF7FF]"
                   >
                     Message
                   </label>
@@ -371,7 +371,7 @@ export default function Contact() {
 
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
                   <p
-                    className="text-xs leading-5 text-[#7FA5B8]"
+                    className="text-xs leading-5 text-[#8FB5C6]"
                     aria-live="polite"
                   >
                     {isSubmitSuccessful
@@ -381,7 +381,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5797B1] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#6EADC7] hover:shadow-lg hover:shadow-[#2A82B7]/40 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#22F2FF]/45 bg-[#22F2FF] px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-[#07142B] transition-all hover:bg-[#FFF4D7] hover:shadow-[0_0_24px_rgba(34,242,255,0.3)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                   >
                     {isSubmitting ? (
                       <>

@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
-/* ================================================================
-   DESIGN TOKENS
-   ================================================================ */
 :root {
-  --bg-base: #06131d;
-  --bg-surface: rgba(87, 151, 177, 0.06);
-  --bg-surface-hover: rgba(255, 255, 255, 0.05);
-  --border-subtle: rgba(87, 151, 177, 0.18);
-  --border-muted: rgba(87, 151, 177, 0.12);
-  --text-primary: #f5fbff;
-  --text-secondary: #bad3de;
-  --text-muted: #7fa5b8;
-  --accent-primary: #5797b1;
-  --accent-secondary: #2a82b7;
-  --accent-dark: #18364a;
-  --accent-glow: rgba(42, 130, 183, 0.28);
+  --bg-base: #07142b;
+  --bg-deep: #030711;
+  --bg-panel: rgba(7, 20, 43, 0.82);
+  --cream: #fff4d7;
+  --cream-soft: #fff9ea;
+  --cream-muted: #d8cda9;
+  --text-primary: #fff7df;
+  --text-secondary: #bff7ff;
+  --text-muted: #8fb5c6;
+  --ink: #091427;
+  --neon-cyan: #22f2ff;
+  --neon-blue: #2a82ff;
+  --neon-pink: #ff3f87;
+  --neon-red: #ff375f;
+  --border-cyan: rgba(34, 242, 255, 0.24);
+  --border-cream: rgba(255, 244, 215, 0.22);
+  --glow-cyan: rgba(34, 242, 255, 0.34);
+  --glow-pink: rgba(255, 63, 135, 0.28);
+  --font-orbitron: "Orbitron";
+  --font-chakra-petch: "Chakra Petch";
 }
 
-/* ================================================================
-   BASE RESET
-   ================================================================ */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -33,136 +35,125 @@ html {
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(34, 242, 255, 0.14), transparent 26rem),
+    radial-gradient(circle at 86% 18%, rgba(255, 63, 135, 0.14), transparent 24rem),
+    linear-gradient(180deg, #07142b 0%, #040a18 48%, #07142b 100%);
+  color: var(--text-primary);
+  font-family: var(--font-chakra-petch), "Trebuchet MS", system-ui, sans-serif;
 }
 
-/* ================================================================
-   CUSTOM SCROLLBAR
-   ================================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 50%, rgba(0, 0, 0, 0.08) 50%),
+    linear-gradient(90deg, rgba(255, 63, 135, 0.025), rgba(34, 242, 255, 0.018), rgba(255, 63, 135, 0.025));
+  background-size: 100% 4px, 6px 100%;
+  mix-blend-mode: screen;
+  opacity: 0.34;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(34, 242, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 242, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: var(--font-orbitron), var(--font-chakra-petch), "Trebuchet MS", system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+main {
+  isolation: isolate;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #030711;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(87, 151, 177, 0.45);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(87, 151, 177, 0.75);
+  background: linear-gradient(180deg, var(--neon-pink), var(--neon-cyan));
+  border-radius: 999px;
 }
 
-/* ================================================================
-   SELECTION
-   ================================================================ */
 ::selection {
-  background: rgba(87, 151, 177, 0.32);
-  color: #fff;
+  background: rgba(255, 63, 135, 0.38);
+  color: var(--cream-soft);
 }
 
-/* ================================================================
-   FOCUS STYLES
-   ================================================================ */
 :focus-visible {
-  outline: 2px solid rgba(87, 151, 177, 0.7);
-  outline-offset: 2px;
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 3px;
   border-radius: 6px;
+  box-shadow: 0 0 0 5px rgba(34, 242, 255, 0.14);
 }
 
-/* ================================================================
-   GLASSMORPHISM UTILITIES
-   ================================================================ */
-.glass {
-  background: rgba(87, 151, 177, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(87, 151, 177, 0.16);
-}
-
+.glass,
 .glass-strong {
-  background: rgba(87, 151, 177, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(87, 151, 177, 0.22);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  box-shadow: 0 0 0 1px rgba(255, 244, 215, 0.06), 0 18px 60px rgba(0, 0, 0, 0.28);
 }
 
-/* ================================================================
-   GRADIENT TEXT
-   ================================================================ */
 .gradient-text {
-  background: linear-gradient(135deg, #f5fbff, #5797b1, #2a82b7);
+  background: linear-gradient(90deg, var(--cream-soft), var(--neon-cyan) 46%, var(--neon-pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 28px rgba(34, 242, 255, 0.18);
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #dff5ff, #5797b1);
+  background: linear-gradient(90deg, var(--cream-soft), var(--neon-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ================================================================
-   SHIMMER ANIMATION
-   ================================================================ */
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(34, 242, 255, 0.12) 50%, transparent 100%);
   background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+  animation: shimmer 2.2s infinite;
 }
 
-/* ================================================================
-   NOISE TEXTURE OVERLAY
-   ================================================================ */
 .noise::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
   pointer-events: none;
-  opacity: 0.4;
 }
 
-/* ================================================================
-   SECTION SPACING
-   ================================================================ */
 section + section {
-  border-top: 1px solid rgba(87, 151, 177, 0.08);
+  border-top: 1px solid rgba(34, 242, 255, 0.09);
 }
 
-/* ================================================================
-   ANIMATED GRADIENT BORDER
-   ================================================================ */
-@keyframes border-spin {
-  0% { --angle: 0deg; }
-  100% { --angle: 360deg; }
-}
-
-/* ================================================================
-   LINK TRANSITIONS
-   ================================================================ */
 a {
   transition: color 0.2s ease;
 }
 
-/* ================================================================
-   BUTTON RESET
-   ================================================================ */
 button {
   border: none;
   background: none;
@@ -170,12 +161,20 @@ button {
   font-family: inherit;
 }
 
-/* ================================================================
-   INPUT AUTOFILL OVERRIDE
-   ================================================================ */
 input:-webkit-autofill,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.04) inset;
-  -webkit-text-fill-color: #f8fafc;
-  caret-color: #f8fafc;
+  -webkit-box-shadow: 0 0 0 1000px rgba(7, 20, 43, 0.96) inset;
+  -webkit-text-fill-color: var(--cream-soft);
+  caret-color: var(--cream-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

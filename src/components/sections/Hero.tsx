@@ -6,11 +6,10 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconMail,
-  IconMapPin,
 } from "@tabler/icons-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import PcbTraceBackground from "@/components/ui/PcbTraceBackground";
-import { profile, stats } from "@/lib/data";
+import { profile } from "@/lib/data";
 
 const easing = [0.21, 0.47, 0.32, 0.98] as [number, number, number, number];
 
@@ -28,20 +27,20 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative z-10 flex min-h-screen items-center overflow-hidden bg-[#06131d] px-6 py-16 sm:py-20 lg:py-24"
+      className="relative z-10 flex min-h-screen items-center overflow-hidden bg-[#07142B] px-5 py-16 sm:px-6 sm:py-20 lg:py-24"
     >
       <PcbTraceBackground />
 
-      <div className="relative z-10 mx-auto flex min-h-[80vh] max-w-7xl flex-col items-center justify-center text-center">
+      <div className="relative z-10 mx-auto flex min-h-[78vh] w-full max-w-7xl flex-col items-center justify-center text-center">
         <div className="flex flex-col items-center text-center">
           <motion.div
             custom={0}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#5797B1]/25 bg-[#5797B1]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#D7ECF5]"
+            className="mb-6 inline-flex items-center gap-2 rounded-md border border-[#22F2FF]/30 bg-[#07142B]/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#BFF7FF] shadow-[0_0_24px_rgba(34,242,255,0.14)]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#5797B1] shadow-[0_0_18px_rgba(87,151,177,0.9)]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF3F87] shadow-[0_0_18px_rgba(255,63,135,0.9)]" />
             {profile.location}
           </motion.div>
 
@@ -50,7 +49,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-[#7FA5B8]"
+            className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-[#BFF7FF]"
           >
             {profile.displayName}
           </motion.p>
@@ -60,7 +59,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-5xl font-semibold tracking-[-0.03em] text-white sm:text-6xl lg:text-7xl"
+            className="text-4xl font-semibold text-white sm:text-6xl lg:text-7xl"
           >
             <span className="gradient-text">Fullstack Engineer</span>
           </motion.h1>
@@ -70,7 +69,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mx-auto mt-6 max-w-5xl text-center text-base leading-8 text-[#BAD3DE] sm:text-lg"
+            className="mx-auto mt-6 max-w-5xl text-center text-base leading-8 text-[#FFF4D7] sm:text-lg"
           >
             {profile.mainsummary}
           </motion.p>
@@ -135,7 +134,7 @@ export default function Hero() {
             .getElementById("about")
             ?.scrollIntoView({ behavior: "smooth" })
         }
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-[#7FA5B8] transition-colors hover:text-white md:flex"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-[#BFF7FF] transition-colors hover:text-[#FFF4D7] md:flex"
         aria-label="Scroll to about"
         id="hero-scroll-indicator"
       >

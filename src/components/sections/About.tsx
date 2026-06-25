@@ -7,10 +7,10 @@ import GlassCard from "@/components/ui/GlassCard";
 import { certifications, profile, stats } from "@/lib/data";
 
 const principles = [
-  "Fullstack Engineer",
-  "React / Next.js",
-  "NestJS API systems",
-  "Mobile development",
+  "Fullstack Development",
+  "Software Architecture",
+  "API systems and CI/CD pipeline",
+  "Security and penetration testing",
   "Enterprise systems",
 ];
 
@@ -32,21 +32,21 @@ export default function About() {
             className="space-y-4"
           >
             <GlassCard className="p-6 sm:p-7" glow>
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-md border border-[#22F2FF]/22 bg-[#07142B]/70 text-[#22F2FF]">
                 <IconSparkles size={21} />
               </div>
-              <p className="text-base leading-8 text-[#D7ECF5] sm:text-lg">
+              <p className="text-base leading-8 text-[#FFF4D7] sm:text-lg">
                 {profile.summary}
               </p>
-              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">
+              <p className="mt-4 text-base leading-8 text-[#D8CDA9]">
                 {profile.extendedSummary}
               </p>
-              <p className="mt-4 text-base leading-8 text-[#BAD3DE]">
+              <p className="mt-4 text-base leading-8 text-[#D8CDA9]">
                 {profile.interests}
               </p>
             </GlassCard>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -55,14 +55,14 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
-                  <GlassCard className="h-full min-h-32 p-5">
-                    <p className="text-3xl font-semibold text-white">
+                  <GlassCard className="h-full min-h-30 p-5">
+                    <p className="text-3xl font-semibold text-[#FFF4D7]">
                       {stat.value}
                     </p>
-                    <p className="mt-2 text-sm font-semibold text-[#D7ECF5]">
+                    <p className="mt-2 text-sm font-semibold text-[#22F2FF]">
                       {stat.label}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-[#7FA5B8]">
+                    <p className="mt-1 text-xs leading-5 text-[#D8CDA9]">
                       {stat.desc}
                     </p>
                   </GlassCard>
@@ -79,17 +79,17 @@ export default function About() {
             className="space-y-4"
           >
             <GlassCard className="p-6 sm:p-7">
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#7FA5B8]">
+              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#BFF7FF]">
                 Engineering Foundation
               </p>
               <div className="grid gap-3">
                 {principles.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-xl border border-[#5797B1]/12 bg-white/[0.025] p-4"
+                    className="flex items-center gap-3 rounded-md border border-[#22F2FF]/14 bg-[#07142B]/58 p-4"
                   >
-                    <span className="h-2 w-2 rounded-full bg-[#5797B1] shadow-[0_0_18px_rgba(87,151,177,0.75)]" />
-                    <span className="text-sm font-medium text-[#D7ECF5]">
+                    <span className="h-2 w-2 rounded-full bg-[#FF3F87] shadow-[0_0_18px_rgba(255,63,135,0.75)]" />
+                    <span className="text-sm font-medium text-[#FFF4D7]">
                       {item}
                     </span>
                   </div>
@@ -97,51 +97,24 @@ export default function About() {
               </div>
             </GlassCard>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-1">
               <GlassCard
                 className="h-full p-6"
                 glow
-                glowColor="rgba(87,151,177,0.12)"
+                glowColor="rgba(34,242,255,0.12)"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md border border-[#22F2FF]/20 bg-[#07142B]/70 text-[#22F2FF]">
                   <IconSchool size={19} />
                 </div>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-[#FFF4D7]">
                   Bachelor of Computer Science
                 </p>
-                <p className="mt-1 text-sm text-[#BAD3DE]">
+                <p className="mt-1 text-sm text-[#D8CDA9]">
                   Universitas Pamulang, 2021 - 2025
                 </p>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7FA5B8]">
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#BFF7FF]">
                   GPA 3.67 / 4.00
                 </p>
-              </GlassCard>
-
-              <GlassCard
-                className="h-full p-6"
-                glow
-                glowColor="rgba(87,151,177,0.12)"
-              >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#5797B1]/15 text-[#D7ECF5]">
-                  <IconCertificate size={19} />
-                </div>
-                <p className="text-sm font-semibold text-white">
-                  Certifications
-                </p>
-                <div className="mt-3 space-y-2">
-                  {certifications.map((cert) => (
-                    <p
-                      key={cert.title}
-                      className="text-sm leading-6 text-[#BAD3DE]"
-                    >
-                      {cert.title}
-                      {cert.validUntil
-                        ? ` - Valid Until ${cert.validUntil}`
-                        : ""}
-                      {cert.result ? ` - ${cert.result}` : ""}
-                    </p>
-                  ))}
-                </div>
               </GlassCard>
             </div>
           </motion.div>

@@ -25,6 +25,9 @@ export default function MagneticButton({
   useEffect(() => {
     const btn = btnRef.current;
     if (!btn) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    if (reduceMotion || coarsePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = btn.getBoundingClientRect();
@@ -46,18 +49,18 @@ export default function MagneticButton({
   }, []);
 
   const baseClasses = cn(
-    'inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold',
+    'inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold uppercase tracking-[0.08em]',
     'transition-all duration-200 ease-out cursor-pointer select-none',
     variant === 'primary' && [
-      'bg-[#5797B1] text-white',
-      'shadow-lg shadow-[#2A82B7]/18 hover:bg-[#6EADC7] hover:shadow-xl hover:shadow-[#2A82B7]/28',
+      'border border-[#22F2FF]/50 bg-[#22F2FF] text-[#07142B]',
+      'shadow-[0_0_24px_rgba(34,242,255,0.28)] hover:bg-[#FFF4D7] hover:shadow-[0_0_30px_rgba(34,242,255,0.42)]',
       'active:scale-95',
     ],
     variant === 'ghost' && [
-      'text-[#BAD3DE] hover:text-white hover:bg-[#5797B1]/10',
+      'text-[#BFF7FF] hover:bg-[#FF3F87]/12 hover:text-[#FFF4D7]',
     ],
     variant === 'outline' && [
-      'border border-[#5797B1]/25 text-[#D7ECF5] hover:border-[#5797B1]/45 hover:text-white hover:bg-[#5797B1]/10',
+      'border border-[#FF3F87]/45 text-[#FFF4D7] hover:border-[#22F2FF]/55 hover:bg-[#22F2FF]/10 hover:text-white',
     ],
     className
   );

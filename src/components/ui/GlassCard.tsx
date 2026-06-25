@@ -16,7 +16,7 @@ export default function GlassCard({
   className,
   hover = false,
   glow = false,
-  glowColor = 'rgba(87,151,177,0.16)',
+  glowColor = 'rgba(34,242,255,0.18)',
 }: GlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -56,9 +56,11 @@ export default function GlassCard({
     <div
       ref={cardRef}
       className={cn(
-        'relative rounded-[1.25rem] border border-[#5797B1]/15 bg-[#5797B1]/[0.045] shadow-[0_18px_60px_rgba(0,0,0,0.12)] backdrop-blur-sm',
+        'relative rounded-lg border border-[#22F2FF]/20 bg-[linear-gradient(135deg,rgba(255,244,215,0.095),rgba(7,20,43,0.86)_34%,rgba(4,8,18,0.92))] shadow-[0_18px_60px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,244,215,0.08)] backdrop-blur-sm',
+        'before:pointer-events-none before:absolute before:inset-x-3 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#22F2FF]/70 before:to-transparent',
+        'after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:bg-[linear-gradient(rgba(255,255,255,0.035)_50%,transparent_50%)] after:bg-[length:100%_6px] after:opacity-20',
         'transition-all duration-300 ease-out will-change-transform',
-        hover && 'hover:border-[#5797B1]/28 hover:bg-[#5797B1]/[0.06]',
+        hover && 'hover:-translate-y-1 hover:border-[#22F2FF]/38 hover:shadow-[0_22px_70px_rgba(0,0,0,0.34),0_0_28px_rgba(34,242,255,0.12)]',
         glow && 'hover:shadow-xl',
         className
       )}
@@ -66,7 +68,7 @@ export default function GlassCard({
     >
       {glow && (
         <div
-          className="absolute inset-0 rounded-[1.25rem] opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{ boxShadow: `0 0 40px ${glowColor}` }}
         />
       )}

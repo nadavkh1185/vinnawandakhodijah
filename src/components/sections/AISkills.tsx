@@ -38,15 +38,15 @@ export default function AISkills() {
                   hover
                   glow
                   className="h-full min-h-64 p-6"
-                  glowColor="rgba(87,151,177,0.14)"
+                  glowColor="rgba(34,242,255,0.14)"
                 >
-                  <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-xl border border-[#5797B1]/18 bg-[#5797B1]/12 text-[#D7ECF5]">
+                  <div className="mb-7 flex h-11 w-11 items-center justify-center rounded-md border border-[#22F2FF]/22 bg-[#07142B]/70 text-[#22F2FF]">
                     <Icon size={20} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-[#FFF4D7]">
                     {area.name}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-[#BAD3DE]">
+                  <p className="mt-3 text-sm leading-7 text-[#D8CDA9]">
                     {area.description}
                   </p>
                 </GlassCard>

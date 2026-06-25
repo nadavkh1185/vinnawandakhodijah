@@ -252,7 +252,7 @@ export default function PcbTraceBackground() {
             <feColorMatrix
               in="blur"
               type="matrix"
-              values="0 0 0 0 0.16 0 0 0 0 0.51 0 0 0 0 0.72 0 0 0 0.8 0"
+            values="0 0 0 0 0.13 0 0 0 0 0.95 0 0 0 0 1 0 0 0 0.9 0"
             />
             <feMerge>
               <feMergeNode />
@@ -267,19 +267,19 @@ export default function PcbTraceBackground() {
             </feMerge>
           </filter>
           <linearGradient id="traceBlue" x1="0%" x2="100%" y1="0%" y2="0%">
-            <stop offset="0%" stopColor="#18364A" />
-            <stop offset="48%" stopColor="#2A82B7" />
-            <stop offset="100%" stopColor="#5797B1" />
+            <stop offset="0%" stopColor="#07142B" />
+            <stop offset="48%" stopColor="#22F2FF" />
+            <stop offset="100%" stopColor="#FF3F87" />
           </linearGradient>
           <linearGradient id="traceAqua" x1="0%" x2="100%" y1="0%" y2="0%">
-            <stop offset="0%" stopColor="#103145" />
-            <stop offset="42%" stopColor="#5797B1" />
-            <stop offset="100%" stopColor="#D7ECF5" />
+            <stop offset="0%" stopColor="#092A45" />
+            <stop offset="42%" stopColor="#22F2FF" />
+            <stop offset="100%" stopColor="#FFF4D7" />
           </linearGradient>
           <radialGradient id="pulseCore">
-            <stop offset="0%" stopColor="#F5FBFF" />
-            <stop offset="42%" stopColor="#5797B1" />
-            <stop offset="100%" stopColor="#2A82B7" stopOpacity="0" />
+            <stop offset="0%" stopColor="#FFF4D7" />
+            <stop offset="42%" stopColor="#22F2FF" />
+            <stop offset="100%" stopColor="#FF3F87" stopOpacity="0" />
           </radialGradient>
           <pattern
             id="pcbGrid"
@@ -290,24 +290,24 @@ export default function PcbTraceBackground() {
             <path
               d="M56 0H0V56"
               fill="none"
-              stroke="#5797B1"
-              strokeOpacity="0.11"
+              stroke="#22F2FF"
+              strokeOpacity="0.12"
               strokeWidth="1"
             />
           </pattern>
         </defs>
 
-        <rect width="1200" height="640" fill="#06131D" />
+        <rect width="1200" height="640" fill="#07142B" />
         <rect width="1200" height="640" fill="url(#pcbGrid)" opacity="0.55" />
         <path
           d="M0 430C170 348 302 380 466 286C642 184 742 96 1200 118V640H0Z"
-          fill="#103145"
+          fill="#091D3A"
           opacity="0.16"
         />
         <path
           d="M0 102C176 132 270 214 444 190C650 162 766 34 1200 44"
           fill="none"
-          stroke="#5797B1"
+          stroke="#22F2FF"
           strokeOpacity="0.05"
           strokeWidth="90"
         />
@@ -318,7 +318,7 @@ export default function PcbTraceBackground() {
               key={path}
               d={path}
               fill="none"
-              stroke="#5797B1"
+              stroke="#22F2FF"
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeOpacity="0.16"
@@ -371,27 +371,22 @@ export default function PcbTraceBackground() {
                   d={toPath(trace.points)}
                   pathLength={1}
                   fill="none"
-                  stroke="#D7ECF5"
+                  stroke="#FFF4D7"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={(trace.width ?? 1.1) + 2.8}
-                  strokeDasharray="0.025 1"
+                  strokeWidth={(trace.width ?? 1.1) + 3.1}
+                  strokeDasharray="0.035 1"
                   filter="url(#traceGlow)"
                   initial={{ strokeDashoffset: reduceMotion ? 0 : 1, opacity: 0 }}
                   animate={{
                     strokeDashoffset: reduceMotion ? 0 : [1, 0, 0, 0],
-                    opacity: reduceMotion ? 0 : [0, 0.95, 0, 0],
+                    opacity: reduceMotion ? 0 : [0, 1, 0.2, 0],
                   }}
                   transition={{
                     duration: period,
                     delay: trace.delay,
                     repeat: Infinity,
-                    times: [
-                      0,
-                      trace.duration / period,
-                      (trace.duration + 0.01) / period,
-                      1,
-                    ],
+                    times: [0, trace.duration / period, (trace.duration + 0.22) / period, 1],
                     ease: "linear",
                   }}
                 />
@@ -429,7 +424,7 @@ export default function PcbTraceBackground() {
                   cx={endX}
                   cy={endY}
                   r="4"
-                  fill="#D7ECF5"
+                  fill="#FFF4D7"
                   filter="url(#nodeGlow)"
                   initial={{ opacity: reduceMotion ? 0.3 : 0, scale: reduceMotion ? 0.9 : 0.4 }}
                   animate={{
@@ -456,7 +451,7 @@ export default function PcbTraceBackground() {
                   cy={endY}
                   r="13"
                   fill="none"
-                  stroke="#5797B1"
+                  stroke="#FF3F87"
                   strokeWidth="1"
                   filter="url(#nodeGlow)"
                   initial={{ opacity: 0, scale: 0.5 }}
@@ -491,7 +486,7 @@ export default function PcbTraceBackground() {
               cx={particle.cx}
               cy={particle.cy}
               r={particle.r}
-              fill="#D7ECF5"
+              fill="#FFF4D7"
               filter="url(#nodeGlow)"
               initial={{ opacity: reduceMotion ? 0.18 : 0 }}
               animate={{
@@ -509,7 +504,7 @@ export default function PcbTraceBackground() {
         </g>
       </svg>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_42%_36%,rgba(87,151,177,0.16),transparent_30%),linear-gradient(90deg,rgba(6,19,29,0.94),rgba(6,19,29,0.42)_46%,rgba(6,19,29,0.86)),linear-gradient(180deg,rgba(6,19,29,0.10),rgba(6,19,29,0.82)_88%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_42%_36%,rgba(34,242,255,0.16),transparent_30%),radial-gradient(circle_at_76%_24%,rgba(255,63,135,0.12),transparent_24%),linear-gradient(90deg,rgba(7,20,43,0.96),rgba(7,20,43,0.34)_46%,rgba(4,7,17,0.86)),linear-gradient(180deg,rgba(7,20,43,0.08),rgba(3,7,17,0.86)_88%)]" />
       <div className="absolute inset-0 noise opacity-60" />
     </div>
   );

@@ -95,25 +95,25 @@ const techIcons: Record<string, IconType> = {
 
 const categoryMeta: Record<string, { accent: string; ring: string }> = {
   Languages: {
-    accent: "text-[#F7DF1E]",
-    ring: "group-hover:border-[#F7DF1E]/35",
+    accent: "text-[#FFF4D7]",
+    ring: "group-hover:border-[#FFF4D7]/35",
   },
   Frontend: {
-    accent: "text-[#61DAFB]",
-    ring: "group-hover:border-[#61DAFB]/35",
+    accent: "text-[#22F2FF]",
+    ring: "group-hover:border-[#22F2FF]/35",
   },
   Backend: {
-    accent: "text-[#9FD1E5]",
-    ring: "group-hover:border-[#9FD1E5]/35",
+    accent: "text-[#FF3F87]",
+    ring: "group-hover:border-[#FF3F87]/35",
   },
   Database: {
-    accent: "text-[#67B3CF]",
-    ring: "group-hover:border-[#67B3CF]/35",
+    accent: "text-[#2A82FF]",
+    ring: "group-hover:border-[#2A82FF]/35",
   },
-  Tools: { accent: "text-[#D7ECF5]", ring: "group-hover:border-white/30" },
+  Tools: { accent: "text-[#BFF7FF]", ring: "group-hover:border-white/30" },
   Additional: {
-    accent: "text-[#9FD1E5]",
-    ring: "group-hover:border-[#5797B1]/40",
+    accent: "text-[#FFF4D7]",
+    ring: "group-hover:border-[#22F2FF]/40",
   },
 };
 
@@ -124,7 +124,7 @@ function TechIcon({ name, category }: { name: string; category: string }) {
   return (
     <div
       className={[
-        "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#5797B1]/15 bg-[#103145]/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300",
+        "flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[#22F2FF]/18 bg-[#07142B]/80 shadow-[inset_0_1px_0_rgba(255,244,215,0.08)] transition-all duration-300",
         meta.ring,
       ].join(" ")}
     >
@@ -156,10 +156,10 @@ export default function TechStack() {
               id={`stack-filter-${cat.toLowerCase().replace("/", "-")}`}
               onClick={() => setActiveCategory(cat)}
               className={[
-                "min-h-10 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
+                "min-h-10 rounded-md px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] transition-all duration-200",
                 activeCategory === cat
-                  ? "bg-[#5797B1] text-white shadow-lg shadow-[#2A82B7]/20"
-                  : "border border-[#5797B1]/15 bg-white/[0.015] text-[#BAD3DE] hover:border-[#5797B1]/30 hover:bg-[#5797B1]/10 hover:text-white",
+                  ? "border border-[#22F2FF]/60 bg-[#22F2FF] text-[#6f84a8] shadow-[0_0_22px_rgba(34,242,255,0.24)]"
+                  : "border border-[#22F2FF]/18 bg-[#07142B]/70 text-[#BFF7FF] hover:border-[#FF3F87]/45 hover:bg-[#FF3F87]/10 hover:text-[#FFF4D7]",
               ].join(" ")}
             >
               {cat}
@@ -169,7 +169,7 @@ export default function TechStack() {
 
         <motion.div
           layout
-          className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6"
+          className="grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-9"
         >
           {filtered.map((tech, index) => (
             <motion.div
@@ -185,20 +185,20 @@ export default function TechStack() {
               <GlassCard
                 hover
                 glow
-                glowColor="rgba(87,151,177,0.12)"
-                className="group h-full min-h-[104px] overflow-hidden p-3.5 sm:min-h-[112px] sm:p-4"
+                glowColor="rgba(34,242,255,0.12)"
+                className="group h-full min-h-[80px] overflow-hidden p-3"
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(87,151,177,0.12),transparent_38%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative z-10 flex h-full flex-col justify-between gap-3">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(34,242,255,0.16),transparent_38%),linear-gradient(135deg,rgba(255,63,135,0.08),transparent_45%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative z-10 flex h-full flex-col justify-between gap-2">
                   <div className="flex items-start justify-between gap-2">
                     <TechIcon name={tech.name} category={tech.category} />
-                    <span className="rounded-full border border-[#5797B1]/12 bg-white/[0.025] px-2 py-0.5 text-[10px] font-medium text-[#7FA5B8]">
-                      {tech.category}
+                    <span className="text-[10px] font-semibold tabular-nums text-[#BFF7FF]/75">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="truncate text-sm font-semibold leading-5 text-white">
+                    <h3 className="text-sm font-semibold leading-tight text-[#FFF4D7">
                       {tech.name}
                     </h3>
                   </div>
