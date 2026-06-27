@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const BASE_URL = "https://vinnawandakhodijah.vercel.app";
+const BASE_URL = "https://vinawandakhodijah.my.id";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -111,11 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-      suppressHydrationWarning
-    >
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full overflow-x-hidden bg-[#07142b] text-[#fff7df]">
         {/* JSON-LD Schema */}
         <script
