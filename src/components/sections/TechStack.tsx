@@ -198,7 +198,7 @@ export default function TechStack() {
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-semibold leading-tight text-[#FFF4D7">
+                    <h3 className="text-xs font-semibold leading-tight text-[#FFF4D7]">
                       {tech.name}
                     </h3>
                   </div>

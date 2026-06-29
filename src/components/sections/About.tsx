@@ -46,7 +46,7 @@ export default function About() {
               </p>
             </GlassCard>
 
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -56,7 +56,7 @@ export default function About() {
                   transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
                   <GlassCard className="h-full min-h-30 p-5">
-                    <p className="text-3xl font-semibold text-[#FFF4D7]">
+                    <p className="text-2xl font-semibold text-[#FFF4D7]">
                       {stat.value}
                     </p>
                     <p className="mt-2 text-sm font-semibold text-[#22F2FF]">

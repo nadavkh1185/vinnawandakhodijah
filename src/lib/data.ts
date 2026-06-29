@@ -265,7 +265,7 @@ export const focusAreas = [
 ];
 
 export const stats = [
-  { label: "Projects", value: "10+", desc: "" },
+  { label: "Projects", value: "10+", desc: "Freelance Projects" },
   { label: "Featured Projects", value: "6", desc: "Listed portfolio work" },
-  { label: "Experiences", value: "2", desc: "Engineering and teaching" },
+  { label: "Experiences", value: "2 years", desc: "Engineering and teaching" },
 ];
