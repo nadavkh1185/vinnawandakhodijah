@@ -1,3 +1,16 @@
+export interface Project {
+  id: number;
+  title: string;
+  client: string;
+  year: string;
+  images?: string[];
+  image?: string[];
+  description: string;
+  tags: string[];
+  featured?: boolean;
+  accentColor: string;
+}
+
 export const profile = {
   name: "Vinawanda Khodijah",
   displayName: "VINAWANDA KHODIJAH",
@@ -69,13 +82,13 @@ export const techStack = [
   },
 ];
 
-export const projects = [
+export const projects: Project[] = [
   {
     id: 1,
     title: "Enterprise Control Center System",
     client: "PT. Putra Thamrin Meyer",
     year: "2026",
-    image: ["/ecc_1.png", "/ecc_2.png", "/ecc_3.png"],
+    images: ["/ecc_1.png", "/ecc_2.png", "/ecc_3.png"],
     description:
       "Built an enterprise-grade dashboard platform using Next.js and NestJS to manage operational data and business workflows. Designed PostgreSQL database architecture with Prisma ORM, developed secure REST APIs, implemented role-based access control, and performed SAST security testing to identify and mitigate code-level vulnerabilities.",
     tags: [
@@ -94,7 +107,7 @@ export const projects = [
     title: "Suarasa Mobile App",
     client: "Personal Project / GDG Event",
     year: "2026",
-    image: ["/suarasa-1.png", "/suarasa-2.png", "/suarasa-3.png"],
+    images: ["/suarasa-1.png", "/suarasa-2.png", "/suarasa-3.png"],
     description:
       "Developed an AI-powered mobile application with Flutter and Dart during a rapid development event. Integrated Google Cloud services and Gemini AI to support voice-based interactions, intelligent responses, and cloud-powered processing while delivering a complete full-stack mobile solution.",
     tags: ["Flutter", "Dart", "Google Cloud", "Gemini AI"],
@@ -106,7 +119,7 @@ export const projects = [
     title: "Company Profile CMS",
     client: "PT. Mitra Graha Integrasi",
     year: "2026",
-    image: ["/dash-migrasi.png", "/migrrasi-1.png", "/migrrasi-2.png"],
+    images: ["/dash-migrasi.png", "/migrrasi-1.png", "/migrrasi-2.png"],
     description:
       "Developed a company profile content management system using Next.js and NestJS. Built responsive administrative interfaces, REST API services, and MySQL database schemas with Prisma ORM. Integrated Google Analytics for visitor insights and reporting, while implementing an AI-powered chat assistant to improve user engagement and content accessibility.",
     tags: ["Next.js", "NestJS", "Prisma ORM", "MySQL"],
@@ -118,6 +131,7 @@ export const projects = [
     title: "ReflectQ Mobile App",
     client: "PT. Mitra Graha Integrasi",
     year: "2025",
+    images: ["/display-1.png", "/display-2.png", "/display-1.png"],
     description:
       "Built mobile application features using React Native and backend services powered by Next.js and PostgreSQL.",
     tags: ["React Native", "Next.js", "Prisma ORM", "Supabase"],
@@ -129,6 +143,11 @@ export const projects = [
     title: "Learning Management System",
     client: "PT. Sarana Kawan Digital",
     year: "2025",
+    images: [
+      "/digital-doctor.png",
+      "/digital-doctor.png",
+      "/digital-doctor.png",
+    ],
     description:
       "Developed LMS modules, REST APIs, user management systems, and content delivery functionality.",
     tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
@@ -140,6 +159,7 @@ export const projects = [
     title: "E-Commerce Platform",
     client: "Fishkinian",
     year: "2024",
+    images: ["/ecom.png", "/ecom.png", "/ecom.png"],
     description:
       "Integrated payment systems and maintained post-deployment operations for e-commerce services.",
     tags: ["WordPress CMS", "Payment Gateway"],

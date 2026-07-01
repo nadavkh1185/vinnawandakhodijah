@@ -40,7 +40,7 @@ export default function Certifications() {
           title="Verified learning and professional standards"
         />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 xl:grid-cols-3">
+        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 no-scrollbar lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible">
           {certifications.map((certificate, index) => {
             const meta = getMeta(certificate);
             const hasImage = Boolean(certificate.image);
@@ -52,6 +52,7 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-70px" }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
+                className="w-[300px] shrink-0 snap-center sm:w-[340px] lg:w-auto lg:shrink"
               >
                 <GlassCard
                   hover

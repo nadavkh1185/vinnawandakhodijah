@@ -23,7 +23,9 @@
   --font-chakra-petch: "Chakra Petch";
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -38,8 +40,16 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 8%, rgba(34, 242, 255, 0.14), transparent 26rem),
-    radial-gradient(circle at 86% 18%, rgba(255, 63, 135, 0.14), transparent 24rem),
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(34, 242, 255, 0.14),
+      transparent 26rem
+    ),
+    radial-gradient(
+      circle at 86% 18%,
+      rgba(255, 63, 135, 0.14),
+      transparent 24rem
+    ),
     linear-gradient(180deg, #07142b 0%, #040a18 48%, #07142b 100%);
   color: var(--text-primary);
   font-family: var(--font-chakra-petch), "Trebuchet MS", system-ui, sans-serif;
@@ -53,8 +63,15 @@ body::before {
   pointer-events: none;
   background:
     linear-gradient(rgba(255, 255, 255, 0.035) 50%, rgba(0, 0, 0, 0.08) 50%),
-    linear-gradient(90deg, rgba(255, 63, 135, 0.025), rgba(34, 242, 255, 0.018), rgba(255, 63, 135, 0.025));
-  background-size: 100% 4px, 6px 100%;
+    linear-gradient(
+      90deg,
+      rgba(255, 63, 135, 0.025),
+      rgba(34, 242, 255, 0.018),
+      rgba(255, 63, 135, 0.025)
+    );
+  background-size:
+    100% 4px,
+    6px 100%;
   mix-blend-mode: screen;
   opacity: 0.34;
 }
@@ -69,12 +86,25 @@ body::after {
     linear-gradient(rgba(34, 242, 255, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(34, 242, 255, 0.035) 1px, transparent 1px);
   background-size: 44px 44px;
-  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
 }
 
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .font-heading {
-  font-family: var(--font-orbitron), var(--font-chakra-petch), "Trebuchet MS", system-ui, sans-serif;
+  font-family:
+    var(--font-orbitron), var(--font-chakra-petch), "Trebuchet MS", system-ui,
+    sans-serif;
   letter-spacing: 0;
 }
 
@@ -109,11 +139,18 @@ main {
 .glass-strong {
   background: var(--bg-panel);
   border: 1px solid var(--border-cyan);
-  box-shadow: 0 0 0 1px rgba(255, 244, 215, 0.06), 0 18px 60px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 244, 215, 0.06),
+    0 18px 60px rgba(0, 0, 0, 0.28);
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, var(--cream-soft), var(--neon-cyan) 46%, var(--neon-pink));
+  background: linear-gradient(
+    90deg,
+    var(--cream-soft),
+    var(--neon-cyan) 46%,
+    var(--neon-pink)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -128,12 +165,21 @@ main {
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(34, 242, 255, 0.12) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 242, 255, 0.12) 50%,
+    transparent 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 2.2s infinite;
 }
@@ -166,6 +212,15 @@ textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px rgba(7, 20, 43, 0.96) inset;
   -webkit-text-fill-color: var(--cream-soft);
   caret-color: var(--cream-soft);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
