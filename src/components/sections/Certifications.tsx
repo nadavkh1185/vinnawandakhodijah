@@ -40,7 +40,7 @@ export default function Certifications() {
           title="Verified learning and professional standards"
         />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 xl:grid-cols-3">
           {certifications.map((certificate, index) => {
             const meta = getMeta(certificate);
             const hasImage = Boolean(certificate.image);

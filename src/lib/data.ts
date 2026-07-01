@@ -195,6 +195,16 @@ export const experiences = [
   },
   {
     id: 4,
+    role: "Various Industries",
+    company: "PT Mitsuba Indonesia, PT Gajah Tunggal Tbk, CV OVJ",
+    period: "2021 - 2025",
+    description:
+      "Finance, Quality Control, and Tax Administration roles across manufacturing and services sectors. ",
+    highlights: ["Quality Control", "Finance"],
+    type: "work",
+  },
+  {
+    id: 5,
     role: "Bachelor of Computer Science",
     company: "Universitas Pamulang",
     period: "2021 - 2025",
@@ -204,7 +214,7 @@ export const experiences = [
     type: "education",
   },
   {
-    id: 5,
+    id: 6,
     role: "Automation Office Administration",
     company: "SMKN 1 Kota Tangerang",
     period: "2016 - 2019",
@@ -217,18 +227,6 @@ export const experiences = [
 
 export const certifications = [
   {
-    title: "BNSP Programmer Certification",
-    issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
-    credential: "Programmer Scheme",
-    year: "2025",
-    validUntil: "2028",
-    result: "",
-    description:
-      "National competency certification validating software development knowledge, programming skills, and professional standards.",
-    image: "/Sertif_BNSP.jpg",
-    pdf: "",
-  },
-  {
     title: "National Internship Programme Certification",
     issuer: "Kementrian Tenaga Kerja Republik Indonesia",
     credential: "Software Engineer",
@@ -238,6 +236,29 @@ export const certifications = [
     description:
       "Successfully completed a national internship program focused on full-stack software engineering, API development, database management, security testing, and collaborative development workflows.",
     image: "/Sertifikat_Maganghub.png",
+  },
+  {
+    title: "BNSP Programmer Certification",
+    issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+    credential: "Programmer Scheme",
+    year: "2025",
+    validUntil: "2028",
+    result: "",
+    description:
+      "National competency certification validating software development knowledge, programming skills, and professional standards.",
+    image: "/Sertif_BNSP.jpg",
+  },
+  {
+    title: "Dicoding Certification",
+    issuer: "Dicoding",
+    credential: "Fundamental Data Visualization",
+    year: "2024",
+    validUntil: "2027",
+    result: "",
+    description:
+      "Data visualization certification from Dicoding, covering fundamental concepts and techniques.",
+    image: "/dicoding-visdat.png",
+    pdf: "",
   },
 ];
 
