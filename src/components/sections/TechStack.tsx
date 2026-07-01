@@ -169,7 +169,7 @@ export default function TechStack() {
 
         <motion.div
           layout
-          className="grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-9"
+          className="grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-9 xl:grid-cols-9"
         >
           {filtered.map((tech, index) => (
             <motion.div
