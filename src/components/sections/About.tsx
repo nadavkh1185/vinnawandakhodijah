@@ -46,7 +46,7 @@ export default function About() {
               </p>
             </GlassCard>
 
-            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
