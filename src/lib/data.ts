@@ -269,7 +269,19 @@ export const certifications = [
     image: "/Sertif_BNSP.jpg",
   },
   {
-    title: "Dicoding Certification",
+    title: "Dicoding Python Certificate",
+    issuer: "Dicoding",
+    credential: "Start to Python Programming",
+    year: "2026",
+    validUntil: "2029",
+    result: "",
+    description:
+      "Python programming certification from Dicoding, covering fundamental concepts and practical applications.",
+    image: "/dicoding-python.png",
+    pdf: "",
+  },
+  {
+    title: "Dicoding Data Visualization Certificate",
     issuer: "Dicoding",
     credential: "Fundamental Data Visualization",
     year: "2024",

@@ -188,9 +188,6 @@ function ProjectVisual({
 
         <div className="mt-4 sm:mt-6 lg:mt-8">
           <p className="text-sm font-medium text-[#BFF7FF]">Selected project</p>
-          <h3 className="mt-2 text-xl font-semibold text-[#FFF4D7] sm:mt-3 sm:text-2xl lg:text-3xl xl:text-4xl">
-            {title}
-          </h3>
         </div>
       </div>
     </div>
@@ -393,17 +390,7 @@ export default function Projects() {
             className="touch-pan-y"
           >
             <div className="relative mx-auto max-w-5xl">
-              <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-                <button
-                  type="button"
-                  onClick={showPrevious}
-                  aria-label="View previous project"
-                  disabled={isAnimating}
-                  className="hidden z-20 h-14 w-14 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70 sm:h-16 sm:w-16 lg:flex"
-                >
-                  <IconArrowLeft size={20} />
-                </button>
-
+              <div className="relative mx-auto max-w-5xl">
                 <div className="relative flex-1 overflow-visible">
                   <div className="absolute inset-0 top-6 z-[1] rounded-lg opacity-40 scale-[0.96]">
                     <GlassCard
@@ -486,36 +473,27 @@ export default function Projects() {
                       />
                     </GlassCard>
                   </motion.div>
-                </div>
 
-                <button
-                  type="button"
-                  onClick={showNext}
-                  aria-label="View next project"
-                  disabled={isAnimating}
-                  className="hidden z-20 h-14 w-14 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70 sm:h-16 sm:w-16 lg:flex"
-                >
-                  <IconArrowRight size={20} />
-                </button>
-
-                <div className="flex items-center justify-center gap-3 lg:hidden">
                   <button
                     type="button"
                     onClick={showPrevious}
                     aria-label="View previous project"
                     disabled={isAnimating}
-                    className="z-20 flex h-12 w-12 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="absolute -left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] backdrop-blur-md transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70 sm:-left-4 sm:h-14 sm:w-14 lg:-left-8 lg:h-16 lg:w-16"
                   >
-                    <IconArrowLeft size={18} />
+                    <IconArrowLeft size={18} className="sm:hidden" />
+                    <IconArrowLeft size={20} className="hidden sm:block" />
                   </button>
+
                   <button
                     type="button"
                     onClick={showNext}
                     aria-label="View next project"
                     disabled={isAnimating}
-                    className="z-20 flex h-12 w-12 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="absolute -right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#22F2FF]/25 bg-[#07142B]/85 text-[#FFF4D7] shadow-[0_0_24px_rgba(34,242,255,0.16)] backdrop-blur-md transition-all duration-300 hover:border-[#22F2FF]/45 hover:text-[#22F2FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22F2FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07142B] disabled:cursor-not-allowed disabled:opacity-70 sm:-right-4 sm:h-14 sm:w-14 lg:-right-8 lg:h-16 lg:w-16"
                   >
-                    <IconArrowRight size={18} />
+                    <IconArrowRight size={18} className="sm:hidden" />
+                    <IconArrowRight size={20} className="hidden sm:block" />
                   </button>
                 </div>
               </div>
