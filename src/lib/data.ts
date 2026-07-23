@@ -70,6 +70,8 @@ export const techStack = [
   { name: "ClickUp", category: "Tools", icon: "CU" },
   { name: "Trello", category: "Tools", icon: "TR" },
   { name: "CI/CD", category: "Tools", icon: "CI" },
+  { name: "Docker", category: "Tools", icon: "DK" },
+  { name: "Swagger", category: "Tools", icon: "SW" },
   { name: "Security Testing", category: "Additional", icon: "ST" },
   { name: "Quality Testing", category: "Additional", icon: "QT" },
   { name: "WordPress CMS", category: "Additional", icon: "WP" },

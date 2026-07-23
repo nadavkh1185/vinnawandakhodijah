@@ -29,6 +29,8 @@ import {
   SiTypescript,
   SiVuedotjs,
   SiWordpress,
+  SiDocker,
+  SiSwagger,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa6";
 import { TbBrandReactNative, TbDatabaseSearch, TbRobot } from "react-icons/tb";
@@ -74,6 +76,7 @@ const techIcons: Record<string, IconType> = {
   NestJS: SiNestjs,
   "PHP Native": SiPhp,
   "Gin Framework": SiGo,
+  Swagger: SiSwagger,
   MySQL: SiMysql,
   PostgreSQL: SiPostgresql,
   Supabase: SiSupabase,
@@ -85,6 +88,7 @@ const techIcons: Record<string, IconType> = {
   ClickUp: SiClickup,
   Trello: SiTrello,
   "CI/CD": LuGitBranch,
+  Docker: SiDocker,
   "Security Testing": LuShieldCheck,
   "Quality Testing": LuTestTube,
   "WordPress CMS": SiWordpress,
@@ -167,14 +171,17 @@ export default function TechStack() {
           ))}
         </div>
 
-        <motion.div
-          layout
-          className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-9 xl:grid-cols-9"
-        >
+        <motion.div layout className="flex flex-wrap justify-center gap-4">
           {filtered.map((tech, index) => (
             <motion.div
               key={tech.name}
               layout
+              className="
+        w-[calc(33.333%-10.667px)]
+        md:w-[calc(25%-12px)]
+        lg:w-[calc(12.5%-14px)]
+        xl:w-[calc(12.5%-14px)]
+      "
               initial={{ opacity: 0, y: 14, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
