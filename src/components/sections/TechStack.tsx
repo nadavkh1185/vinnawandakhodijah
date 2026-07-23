@@ -176,12 +176,7 @@ export default function TechStack() {
             <motion.div
               key={tech.name}
               layout
-              className="
-        w-[calc(33.333%-10.667px)]
-        md:w-[calc(25%-12px)]
-        lg:w-[calc(12.5%-14px)]
-        xl:w-[calc(12.5%-14px)]
-      "
+              className="w-[calc(33.333%-10.667px)] md:w-[calc(25%-12px)] lg:w-[calc(12.5%-14px)] xl:w-[calc(12.5%-14px)]"
               initial={{ opacity: 0, y: 14, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
