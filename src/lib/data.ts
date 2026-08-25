@@ -106,15 +106,15 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Suarasa Mobile App",
-    client: "Personal Project / GDG Event",
+    title: "Luxey UPVC — Company Profile & CMS",
+    client: "Luxey UPVC",
     year: "2026",
-    images: ["/suarasa-1.png", "/suarasa-2.png", "/suarasa-3.png"],
+    images: ["/luxey-1.png", "/luxey-2.png", "/luxey-3.png"],
     description:
-      "Developed an AI-powered mobile application with Flutter and Dart during a rapid development event. Integrated Google Cloud services and Gemini AI to support voice-based interactions, intelligent responses, and cloud-powered processing while delivering a complete full-stack mobile solution.",
-    tags: ["Flutter", "Dart", "Google Cloud", "Gemini AI"],
+      "Developed a full-stack company profile and content management system for a UPVC door and window manufacturer. Built the backend API with Golang and GORM connected to Supabase (PostgreSQL), documented endpoints with Swagger, and implemented a public-facing website with Next.js and Tailwind CSS covering hero, products, projects, news, and contact sections with a custom admin dashboard for content management.",
+    tags: ["Next.js", "Golang", "GORM", "Supabase", "Tailwind CSS", "Swagger"],
     featured: true,
-    accentColor: "#5797B1",
+    accentColor: "#1E6FAE",
   },
   {
     id: 3,
@@ -173,6 +173,22 @@ export const projects: Project[] = [
 export const experiences = [
   {
     id: 1,
+    role: "Full-Stack Engineer",
+    company: "PT. FAT Intelegensi Teknologi",
+    period: "Aug 2026 - Present",
+    description:
+      "Worked across fullstack development, analyst system, API engineering, database design, security testing, and mobile application development.",
+    highlights: [
+      "Fullstack development",
+      "API engineering",
+      "Database design",
+      "Security testing",
+      "Mobile apps",
+    ],
+    type: "work",
+  },
+  {
+    id: 2,
     role: "Software Engineer",
     company: "PT. Mitra Graha Integrasi",
     period: "Nov 2025 - May 2026",
@@ -188,7 +204,7 @@ export const experiences = [
     type: "work",
   },
   {
-    id: 2,
+    id: 3,
     role: "Private IT Teacher",
     company: "Eduprima Education Group",
     period: "May 2024 - Present",
@@ -202,7 +218,7 @@ export const experiences = [
     type: "work",
   },
   {
-    id: 3,
+    id: 4,
     role: "Web Developer",
     company: "PT. Tribuana Sarana Utama",
     period: "Aug 2024 - Jan 2025",
@@ -216,7 +232,7 @@ export const experiences = [
     type: "work",
   },
   {
-    id: 4,
+    id: 5,
     role: "Various Industries",
     company: "PT Mitsuba Indonesia, PT Gajah Tunggal Tbk, CV OVJ",
     period: "2021 - 2025",
@@ -226,7 +242,7 @@ export const experiences = [
     type: "work",
   },
   {
-    id: 5,
+    id: 6,
     role: "Bachelor of Computer Science",
     company: "Universitas Pamulang",
     period: "2021 - 2025",
@@ -236,7 +252,7 @@ export const experiences = [
     type: "education",
   },
   {
-    id: 6,
+    id: 7,
     role: "Automation Office Administration",
     company: "SMKN 1 Kota Tangerang",
     period: "2016 - 2019",
