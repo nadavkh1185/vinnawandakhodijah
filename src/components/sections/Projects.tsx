@@ -89,7 +89,7 @@ function ProjectVisual({
           <div className="mt-4 sm:mt-5 lg:mt-7">
             <div
               className={cn(
-                "relative mx-auto overflow-hidden border border-[#FFF4D7]/20 bg-[#050817] shadow-[0_24px_70px_rgba(0,0,0,0.34),0_0_38px_rgba(34,242,255,0.12)]",
+                "relative mx-auto w-full overflow-hidden rounded-lg border border-[#FFF4D7]/20 bg-[#050817] p-2 shadow-[0_24px_70px_rgba(0,0,0,0.34),0_0_38px_rgba(34,242,255,0.12)]",
                 isMobileProject
                   ? "max-w-[250px] rounded-lg p-2"
                   : "rounded-lg p-2",
@@ -108,7 +108,7 @@ function ProjectVisual({
 
               <div
                 className={cn(
-                  "relative mx-auto overflow-hidden rounded-md border border-[#22F2FF]/18 bg-black",
+                  "relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-md border border-[#22F2FF]/18 bg-black",
                   isMobileProject
                     ? "flex h-[280px] w-[180px] items-center justify-center sm:h-[336px] sm:w-[208px] lg:h-[430px] lg:w-[238px]"
                     : "h-[220px] w-full sm:h-[240px] lg:aspect-[16/9]",
@@ -280,6 +280,7 @@ export default function Projects() {
   }, [activeIndex]);
   const isMobileProject = useMemo(
     () =>
+      currentProject.id === 1 ||
       currentProject.tags.some((tag) =>
         ["Flutter", "React Native"].includes(tag),
       ),
