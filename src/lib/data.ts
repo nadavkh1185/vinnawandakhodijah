@@ -199,7 +199,7 @@ export const experiences = [
     id: 1,
     role: "Full-Stack Engineer",
     company: "PT. FAT Intelegensi Teknologi",
-    period: "Aug 2026 - Present",
+    period: "July 2026 - Present",
     description:
       "Worked across fullstack development, analyst system, API engineering, database design, security testing, and mobile application development.",
     highlights: [
