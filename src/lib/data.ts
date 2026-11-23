@@ -87,25 +87,37 @@ export const techStack = [
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Enterprise Control Center System",
-    client: "PT. Putra Thamrin Meyer",
+    title: "Food & Beverage Management System",
+    client: "PT. FAT Intelegensi Teknologi",
     year: "2026",
-    images: ["/ecc_1.png", "/ecc_2.png", "/ecc_3.png"],
+    images: ["/fnb1.png", "/fnb2.png", "/fnb3.png"],
     description:
-      "Built an enterprise-grade dashboard platform using Next.js and NestJS to manage operational data and business workflows. Designed PostgreSQL database architecture with Prisma ORM, developed secure REST APIs, implemented role-based access control, and performed SAST security testing to identify and mitigate code-level vulnerabilities.",
+      "Developed and maintained a full-stack Food & Beverage management platform using Next.js and NestJS to streamline restaurant operations, including point-of-sale workflows, menu management, product categories, and business administration. Designed PostgreSQL database integrations with Prisma ORM, developed secure REST APIs, implemented role-based access control and tenant-based data isolation, and optimized frontend interfaces for responsive business operations.",
     tags: [
       "Next.js",
-      "TypeScript",
       "NestJS",
       "Prisma ORM",
-      "PostgreSQL",
-      "Supabase",
+      "PostgreeSQL",
+      "Tailwind CSS",
+      "Docker",
     ],
-    featured: true,
+    featured: false,
     accentColor: "#2A82B7",
   },
   {
     id: 2,
+    title: "QPS - Insurance Quotation & Calculation System",
+    client: "PT. FAT Intelegensi Teknologi",
+    year: "2026",
+    images: ["/qps1.png", "/qps2.png", "/qps3.png"],
+    description:
+      "Developed and enhanced a web-based insurance quotation system to streamline policy configuration, premium calculations, and quotation generation across multiple insurance products, including Property, Motor Vehicle, Marine, Engineering, and Liability insurance. Implemented dynamic insurance forms, automated premium calculation logic, configurable coverage clauses, and interactive quotation previews to simplify complex insurance workflows.",
+    tags: ["JavaScript", "HTML5", "CSS3", "REST API", "PostgreSQL", "Python"],
+    featured: true,
+    accentColor: "#2A82B7",
+  },
+  {
+    id: 3,
     title: "Luxey UPVC — Company Profile & CMS",
     client: "Luxey UPVC",
     year: "2026",
@@ -117,7 +129,19 @@ export const projects: Project[] = [
     accentColor: "#1E6FAE",
   },
   {
-    id: 3,
+    id: 4,
+    title: "Enterprise Control Center System",
+    client: "PT. Putra Thamrin Meyer",
+    year: "2026",
+    images: ["/ecc_1.png", "/ecc_2.png", "/ecc_3.png"],
+    description:
+      "Built an enterprise-grade dashboard platform using Next.js and NestJS to manage operational data and business workflows. Designed PostgreSQL database architecture with Prisma ORM, developed secure REST APIs, implemented role-based access control, and performed SAST security testing to identify and mitigate code-level vulnerabilities.",
+    tags: ["Next.js", "TypeScript", "NestJS", "Prisma ORM", "Supabase"],
+    featured: true,
+    accentColor: "#2A82B7",
+  },
+  {
+    id: 5,
     title: "Company Profile CMS",
     client: "PT. Mitra Graha Integrasi",
     year: "2026",
@@ -129,7 +153,7 @@ export const projects: Project[] = [
     accentColor: "#67B3CF",
   },
   {
-    id: 4,
+    id: 6,
     title: "ReflectQ Mobile App",
     client: "PT. Mitra Graha Integrasi",
     year: "2025",
@@ -141,7 +165,7 @@ export const projects: Project[] = [
     accentColor: "#2A82B7",
   },
   {
-    id: 5,
+    id: 7,
     title: "Learning Management System",
     client: "PT. Sarana Kawan Digital",
     year: "2025",
@@ -157,7 +181,7 @@ export const projects: Project[] = [
     accentColor: "#5797B1",
   },
   {
-    id: 6,
+    id: 8,
     title: "E-Commerce Platform",
     client: "Fishkinian",
     year: "2024",
@@ -336,6 +360,14 @@ export const focusAreas = [
 ];
 
 export const stats = [
-  { label: "Featured Projects", value: "6", desc: "Listed portfolio work" },
-  { label: "Experiences", value: "2 years", desc: "Engineering and teaching" },
+  {
+    label: "Featured Projects",
+    value: "8 Products",
+    desc: "Listed portfolio work",
+  },
+  {
+    label: "Experiences",
+    value: " More than 2 years",
+    desc: "Engineering and teaching",
+  },
 ];
